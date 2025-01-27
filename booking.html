@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="icon" type="image/x-icon" href="./Images/Online Taxi - Favicon.png">
+    <link rel="stylesheet" href="./popup.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <style>
+        .formm,
+        .sectionn {
+            background-color: aliceblue;
+
+        }
+
+        small {
+            width: 200px !important;
+            background-color: #5cd7b0;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        #popup2 .fa {
+            font-size: 70px;
+            color: green;
+        }
+
+        #popup2 {
+            display: none;
+
+        }
+
+        .popup2 {
+
+
+            background-color: rgba(0, 0, 0, 0.374);
+            height: 100vh;
+            position: fixed;
+            width: 100%;
+            top: 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .div {
+            border: 4px solid #5cd7b0;
+            border-radius: 50%;
+            border-top: 4px solid rgba(128, 128, 128, 0.61);
+            width: 35px;
+            height: 35px;
+            -webkit-animation: spin 1s linear infinite;
+            margin-top: 50px !important;
+            animation: spin 1s linear infinite;
+        }
+
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #progress {
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.459);
+            width: 100%;
+            height: 100vh;
+            top: 0;
+        }
+
+        .line {
+            padding-left: 167px;
+            border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
+        }
+
+        .line1 {
+            padding-left: 130px;
+            border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
+        }
+
+        .line3 {
+            padding-left: 160px;
+            border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
+        }
+
+        .line4 {
+            padding-left: 215px;
+            border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
+        }
+
+        .going {
+            width: 300px !important;
+        }
+
+        @media screen and (max-width:700px) {
+            .line {
+                padding-left: 47px;
+                border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
+            }
+
+            .line1 {
+                padding-left: 10px;
+                border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
+            }
+
+            .line3 {
+                padding-left: 40px;
+                border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
+            }
+
+            .line4 {
+                padding-left: 95px;
+                border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
+            }
+
+            .callt {
+                display: none !important;
+            }
+
+            .PP {
+                width: 145px !important;
+            }
+
+            .MDeatail {
+                font-weight: normal !important;
+
+            }
+        }
+
+        .PP {
+            width: 250px;
+        }
+    </style>
+</head>
+
+<body style="background-color: #5cd7b0;">
+
+    <div class="container-fluid ">
+        <div class="">
+            <div class="container ">
+                <div class="row align-items-center d-flex " style="width: 100%;">
+
+                    <div class="col p-0 callt text-black d-flex ">
+                        <div class="phonee px-3 ms-3 shadow" style="height: 40px; ">
+                            <ul class="d-flex py-2 ps-0" style="min-height: 35px; ">
+
+                                <li class="nav-item fa fa-phone  d-flex fw-normal pt-1 ">
+                                    <span> Talk :</span>
+                                </li>
+                                <li class="nav-item" style="list-style: none;"><a class="nav-link"
+                                        href="tel:9988222283">&nbsp +(91)
+                                        9988-2222-83</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col d-flex justify-content-end textp  pe-0 ps-0 ">
+                        <ul class="d-flex ps-0 pt-3 ">
+                            <a href="https://www.instagram.com/online_taxi22">
+                                <li style="height:35px;width:35px; background-color:#5cd7b0;"
+                                    class="d-flex me-1 shadow justify-content-center text-dark align-items-center ">
+                                    <b class="fa fa-instagram"></b>
+                                </li>
+                            </a>
+                            <a href="https://www.facebook.com/share/QKavA74oJndJzUjf/?mibextid=qi2Omg">
+                                <li style="height:35px;width:35px;; background-color: #5cd7b0; "
+                                    class="d-flex shadow mx-1 justify-content-center text-dark align-items-center  ">
+                                    <b class="fa fa-facebook"></b>
+                                </li>
+                            </a>
+                            <a href="https://www.twitter.com/">
+                                <li style="height:35px;width:35px;; background-color: #5cd7b0; "
+                                    class="d-flex  shadow ms-1 justify-content-center text-dark align-items-center ">
+                                    <b class="fa fa-twitter"></b>
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container " style="position: sticky; top:10px;z-index: 100;">
+        <nav class="navbar navbar-expand-lg bg-white shadow ">
+            <!-- <div class="container-fluid"> -->
+            <div class="container ">
+                <a class="navbar-brand fw-bold" href="./index.html">
+                    <img src="./Images/sidhu_travels-removebg-preview.png" alt="" width="200px">
+                </a>
+                <button class="navbar-toggler rounded-0 border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon "></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ms-auto fw-bold text-white">
+                        <li class="nav-item ps-lg-5">
+                            <a class="nav-link " href="./index.html">Home</a>
+                        </li>
+                        <li class="nav-item ps-lg-5 ">
+                            <a class="nav-link " href="./about.html">About</a>
+                        </li>
+                        <li class="nav-item ps-lg-5 ">
+                            <a class="nav-link " href="./index.html#Tours">Our Tours</a>
+                        </li>
+                        <li class="nav-item ps-lg-5 ">
+                            <a class="nav-link " href="./reviews.html">Reviews</a>
+                        </li>
+
+                        <li class="nav-item ps-lg-5 ">
+                            <a class="nav-link " href="./contact.html">Contact us</a>
+                        </li>
+                    </ul>
+                    <a href="#Mainform">
+                        <button class="btn ms-lg-5 btn-warning">Book Now</button>
+                    </a>
+
+                </div>
+
+            </div>
+            <!-- </div> -->
+        </nav>
+    </div>
+
+
+    <div class="container py-5  section">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="formm w-100">
+                    <!-- <div class="d-flex justify-content-center ">
+                <img src="./Images/sidhu_travels-removebg-preview.png" alt="" height="50px">
+            </div> -->
+
+                    <h1 class="text-center display-5
+             fw-bolder p-4  pt-3 bg-warning"> <span id="Route" class="text-black"></span> Booking
+                        <!-- from <span id="fromCity"></span> to <span
+                    id="toCity"></span> -->
+                    </h1>
+                    <div>
+                        <form class="p-md-4 p-2" name="Bookingform"
+                            action="https://onlinetaxi-sgl4.onrender.com/Bookform" method="post" id="carForm">
+
+                            <div class="ps-md-3">
+
+                                <h2 class="mb-4 text-success"><u>Booking Detail</u></h2>
+                                <p>
+                                    <span class="lnx"> Going From: <span class="line"></span> </span>
+                                    <span id="fromCity2" class="ps-2"></span>
+                                </p>
+
+                                <p>
+                                    <span class="going"> Going To/Hours : <span class="line1"></span></span>
+                                    <span id="toCity1" class="ps-2"></span>
+                                </p>
+                                <p>
+                                    Selected Car: <span class="line3"></span>
+                                    <span id="carName1" class="ps-2"></span>
+                                </p>
+                                <p>
+                                    Price:<span class="line4"></span>
+                                    <span id="price" class="text-success ps-2">/-</span> <span
+                                        class="text-secondary">(Inc. Toll
+                                        /
+                                        Tax*)</span>
+
+                                </p>
+                                <p class="text-secondary"><span class="text-dark">Note:</span><span
+                                        class="line4 "></span>
+
+                                    <span class="ps-2">Parking extra charging</span>
+                                </p>
+
+                            </div>
+                            <div class="row g-3 mx-md-2 py-5">
+
+                                <h3>Contact & Pickup Details</h3>
+                                <div class="col-md-12">
+                                    <input class="form-control form-input rounded-0" type="text" placeholder="Name*"
+                                        name="Name" required>
+
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <!-- Country Code Dropdown -->
+                                        <select class="form-select" id="countryCode" style="max-width: 100px;" required>
+                                            <option value="+91" selected>+91 (India)</option>
+                                            <option value="+1">+1 (USA)</option>
+                                            <option value="+44">+44 (UK)</option>
+                                            <option value="+61">+61 (Australia)</option>
+                                            <option value="+81">+81 (Japan)</option>
+                                            <option value="+86">+86 (China)</option>
+                                            <option value="+49">+49 (Germany)</option>
+                                            <option value="+33">+33 (France)</option>
+                                            <option value="+39">+39 (Italy)</option>
+                                            <option value="+34">+34 (Spain)</option>
+                                            <option value="+41">+41 (Switzerland)</option>
+                                            <option value="+7">+7 (Russia)</option>
+                                            <option value="+62">+62 (Indonesia)</option>
+                                            <option value="+55">+55 (Brazil)</option>
+                                            <option value="+82">+82 (South Korea)</option>
+                                            <option value="+64">+64 (New Zealand)</option>
+                                            <option value="+60">+60 (Malaysia)</option>
+                                            <option value="+20">+20 (Egypt)</option>
+                                            <option value="+27">+27 (South Africa)</option>
+                                            <option value="+41">+41 (Switzerland)</option>
+                                            <!-- Add more country codes as needed -->
+                                        </select>
+
+                                        <!-- Phone Number Input -->
+
+                                        <input class="form-control form-input rounded-0" type="text"
+                                            placeholder="Phone Number*" name="Phone" required pattern="[0-9]{10}"
+                                            title="Please enter a valid 10-digit phone number"
+                                            oninput="validatePhone(this)" required>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function validatePhone(input) {
+                                        const phone = input.value;
+
+                                        // Allow only digits and check length
+                                        if (phone.length > 10) {
+                                            input.value = phone.slice(0, 10); // Truncate to 10 digits if longer
+                                        }
+                                    }
+                                </script>
+
+
+                                <div class="col-md-6 ">
+                                    <input style="text-transform: uppercase;" class="form-control form-input rounded-0"
+                                        type="date" name="Date" id="Date" min="" required>
+                                </div>
+
+                                <script>
+                                    var today1 = new Date().toISOString().split('T')[0];
+                                    document.getElementById('Date').setAttribute('min', today1);
+                                    document.getElementById('Date').value = today1;
+                                </script>
+
+
+
+                                <div class="col-md-6" hidden>
+                                    <input class="form-control form-input rounded-0" type="datetime-local" name="Date1"
+                                        id="Date1" required>
+                                </div>
+
+                                <script>
+                                    const now = new Date();
+                                    const today = now.toISOString().split('T')[0];
+
+                                    const currentTime = now.toTimeString().split(' ')[0].substring(0, 5);
+
+                                    const dateInput1 = document.getElementById('Date1');
+                                    dateInput1.value = `${today}T${currentTime}`;
+                                    dateInput1.min = `${today}T${currentTime}`;
+                                </script>
+
+
+
+                                <div class="col-md-6">
+                                    <input class="form-control form-input rounded-0" id="timeInput" type="text"
+                                        name="Time" required>
+                                </div>
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const timeInput = document.getElementById('timeInput');
+                                        const now = new Date();
+
+                                        // Set default time to current time + 1 hour and 20 minutes
+                                        now.setHours(now.getHours() + 1);
+                                        now.setMinutes(now.getMinutes() + 20);
+                                        const defaultTime = `${String(now.getHours() % 12 || 12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} ${now.getHours() >= 12 ? 'PM' : 'AM'}`;
+
+                                        // Initialize Flatpickr with AM/PM format
+                                        flatpickr(timeInput, {
+                                            enableTime: true,
+                                            noCalendar: true,
+                                            dateFormat: "h:i K", // 12-hour format with AM/PM
+                                            defaultDate: defaultTime, // Set default time
+                                            minDate: "today", // Optional: prevents selecting past dates
+                                            minuteIncrement: 1, // Optional: increment minutes by 1
+                                            onChange: function (selectedDates, dateStr, instance) {
+                                                // Ensure the picker shows the correct selected time
+                                                console.log('Selected time:', dateStr);
+                                            }
+                                        });
+
+                                        // Manually set the default time to ensure it's shown correctly
+                                        timeInput._flatpickr.setDate(defaultTime);
+                                    });
+                                </script>
+                                <div class="col-md-12">
+                                    <input class="form-control form-input rounded-0" type="text" placeholder="Address*"
+                                        name="Address" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="form-control form-input rounded-0" type="email"
+                                        placeholder="Enter Email(Optional)" name="Email2">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="" class="pb-3 ps-2"><span class="fw-bold">Note:</span> If have any Extra
+                                        things
+                                        without(lagguage) mention in massege</label>
+                                    <textarea class="form-control form-input rounded-0" rows="4" cols="50"
+                                        placeholder="Message (Optional)" name="Email"></textarea>
+                                </div>
+                                <div class="col-md-12" hidden>
+                                    <input class="form-control form-input rounded-0" type="text" placeholder="From City"
+                                        name="From" id="fromCity1" readonly>
+                                </div>
+                                <div class="col-md-12" hidden>
+                                    <input class="form-control form-input rounded-0" type="text" placeholder="From City"
+                                        name="To" id="ToCty" readonly>
+                                </div>
+                                <div class="col-md-6" hidden>
+                                    <input class="form-control form-input rounded-0" type="text" placeholder="Route"
+                                        name="Route" id="Routee">
+                                </div>
+                                <div class="col-md-6" hidden>
+                                    <input class="form-control form-input rounded-0" type="text" placeholder="Price"
+                                        name="Price" id="Priceee">
+                                </div>
+                                <div class="col-md-6" hidden>
+                                    <input class="form-control form-input rounded-0" type="text" placeholder="Car Name"
+                                        name="CarNamee" id="Carname">
+                                </div>
+                                <div class="col-md-6" hidden>
+                                    <input class="form-control form-input rounded-0" type="text" placeholder="OrderNo"
+                                        name="No" id="Noo">
+                                </div>
+
+                                <div class="col-md-12 ">
+
+                                    <!-- <a href="#popup2"> -->
+                                    <input type="submit" value="Send Now" class="btn rounded-0 px-5 py-2"
+                                        style="background-color: #ffc107;">
+                                    <!-- </a> -->
+                                </div>
+
+
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md pt-4 pt-md-0">
+                <div class="sectionn w-100">
+                    <h2 class="text-center p-md-4 p-2 display-6 fw-bold bg-warning MDeatail">More Detail</h2>
+                    <div class="p-md-4 ps-md-5 ms-2">
+                        <div class="d-flex">
+                            <p class="PP">Seat: </p>
+                            <p id="Seatss" class="fw-normal"></p>
+                        </div>
+
+                        <div class="d-flex">
+                            <p class="PP">AC: </p>
+                            <p class="fw-normal">Yes</p>
+                        </div>
+
+                        <div class="d-flex">
+                            <p class="PP">Fuel Type: </p>
+                            <p class="fw-normal">CNG/Petrol/Diesel</p>
+                        </div>
+
+                        <div class="d-flex">
+                            <p class="PP">Luggage Carrier: </p>
+                            <p id="Luggagee" class="fw-normal"></p>
+                        </div>
+
+                        <div class="d-flex">
+                            <p class="PP">Phone Charger: </p>
+                            <p class="fw-normal">Yes</p>
+                        </div>
+
+                        <div class="d-flex">
+                            <p class="PP">Music System: </p>
+                            <p class="fw-normal">Yes</p>
+                        </div>
+
+                        <div class="d-flex">
+                            <p class="PP">Smoking: </p>
+                            <p class="fw-normal">Not Allowed</p>
+                        </div>
+
+                        <!-- <div class="d-flex">
+    <p style="width: 250px;">Pickup and Drop:</p>
+    <p>Yes</p>
+</div>
+
+<div class="d-flex">
+    <p style="width: 250px;">Pet Allow:</p>
+    <p>Charges Including</p>
+</div> -->
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popup2">
+        <div class="text-center popup2">
+
+            <div class="popup-content p-5">
+                <!-- <img src="./Images/Submitted-unscreen.gif" alt="" style="border-radius: 50%;" width="500px"
+                height="300px"> -->
+                <p class="fa fa-check-circle "></p>
+                <h2>Booking successfully</h2>
+                <h4 class="text-success">Booking id: <span id="Realid"></span></h4>
+                <p>
+                    <span id="RRR"></span> Taxi booked:
+                    <span id="fromCity" class="fw-lighter"></span> To <span id="toCity" class="fw-lighter"></span>
+                </p>
+
+                <p class="fw-lighter"><span class="fw-bold">Note:</span> If we go away from location/address charges
+                    will be included</p>
+                <button class="btn btn-success px-5 shadow rounded-0" onclick="Done()">Ok</button>
+            </div>
+        </div>
+    </div>
+    <div id="progress" style="display: none;">
+        <div class="container d-flex justify-content-center align-items-center h-100 text-light display-6">
+            <!-- <img src="./Images/sidhu_travels-removebg-preview.png" alt="Online Taxi" height="40px"> -->
+            <div style="display: flex;">
+                <div class="">Thank you for choosing us!<br> Enjoy a safe and reliable.......</div>
+                <div class="div mt-4"></div>
+
+            </div>
+        </div>
+
+    </div>
+    <script>
+        window.onload = function () {
+            let Order = 0;
+
+            // Fetch booking order number from the API
+            fetch('https://onlinetaxi-sgl4.onrender.com/findBookdata')
+                .then(response => response.json())
+                .then(json => {
+                    json.forEach(val => {
+                        Order = val.No;
+                    });
+                    Order = Order + 1;
+                    document.getElementById('Noo').value = Order;
+                    document.getElementById('Realid').textContent = "STO" + Order;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+
+            const params = new URLSearchParams(window.location.search);
+            const carId = params.get('carId');
+
+            if (carId) {
+                const carData = JSON.parse(localStorage.getItem(carId));
+
+                if (carData) {
+                    document.getElementById('Route').textContent = carData.RouteName; // Display route in heading
+                    document.getElementById('RRR').textContent = carData.RouteName; // Show route in popup
+
+                    // Populate hidden form fields
+                    document.getElementById('Priceee').value = carData.price;
+                    document.getElementById('Carname').value = carData.carName;
+                    document.getElementById('Routee').value = carData.RouteName;
+
+                    // Populate visible data
+                    document.getElementById('price').textContent = carData.price;
+                    document.getElementById('fromCity').textContent = carData.fromCity;
+                    document.getElementById('toCity').textContent = carData.toCity;
+                    document.getElementById('carName1').textContent = carData.carName;
+
+                    // Populate hidden input fields with city names
+                    document.getElementById('fromCity1').value = carData.fromCity;
+                    document.getElementById('ToCty').value = carData.toCity;
+                    document.getElementById('Seatss').textContent = carData.Seats;
+                    document.getElementById('Luggagee').textContent = carData.Luggage;
+
+
+
+                    // Populate static text in form fields
+                    document.getElementById('fromCity2').textContent = carData.fromCity;
+                    document.getElementById('toCity1').textContent = carData.toCity;
+                } else {
+                    console.error('No data found for this car ID');
+                }
+            } else {
+                console.error('No car ID found in the URL');
+            }
+
+            // Multicity special case
+            if (carId === 'multicity') {
+                const tripData = JSON.parse(localStorage.getItem('multicityTrip'));
+                if (tripData) {
+                    // Pre-fill form fields with multicity trip data
+                    document.getElementById('Route').textContent = tripData.RouteName;
+                    document.getElementById('RRR').textContent = tripData.RouteName;
+                    document.getElementById('fromCity').textContent = tripData.fromCity;
+                    document.getElementById('toCity').textContent = tripData.toCity;
+                    document.getElementById('price').textContent = tripData.price;
+                    document.getElementById('carName1').textContent = tripData.carName;
+
+
+                    // Populate hidden inputs for multicity
+                    document.getElementById('Priceee').value = tripData.price;
+                    document.getElementById('Carname').value = tripData.carName;
+                    document.getElementById('Routee').value = tripData.RouteName;
+                    document.getElementById('fromCity1').value = tripData.fromCity;
+                    document.getElementById('ToCty').value = tripData.toCity;
+
+                    // Pre-fill static texts
+                    document.getElementById('fromCity2').textContent = tripData.fromCity;
+                    document.getElementById('toCity1').textContent = tripData.toCity;
+                }
+            }
+
+            // Handle airport booking data from localStorage
+            const airportData = JSON.parse(localStorage.getItem('airportBookingData'));
+
+            if (airportData) {
+                // Pre-fill the form with airport booking data
+                document.getElementById('fromCity').textContent = airportData.selectCity;
+                document.getElementById('toCity').textContent = airportData.airport;
+                document.getElementById('Date').value = airportData.date;
+
+                // Optionally, set hidden form fields if needed
+                document.getElementById('fromCity1').value = airportData.selectCity;
+                document.getElementById('ToCty').value = airportData.airport;
+            } else {
+                console.error('No airport booking data found in localStorage');
+            }
+        };
+
+
+    </script>
+
+    <script>
+        const form = document.getElementById('carForm');
+
+        Popup = document.getElementById('popup2')
+        Progress = document.getElementById('progress')
+        form.onsubmit = function (e) {
+            Progress.style.display = "block";
+
+
+            setTimeout(function () {
+                Progress.style.display = "none";
+                Popup.style.display = "block";
+            }, 2000);
+        };
+
+        function Done() {
+            window.location.href = '/';
+        }
+
+    </script>
+
+</body>
+
+</html>

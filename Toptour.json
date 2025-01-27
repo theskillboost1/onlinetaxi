@@ -1,0 +1,50 @@
+[
+    {
+        "Route":"Chandigarh to Amritsar",
+        "Fare":"Fare Start",
+        "DiscountPrice": 3299,
+        "MainPrice":3800
+    },
+    {
+        "Route":"Chandigarh to Delhi",
+        "Fare":"Fare Start",
+        "DiscountPrice": 2999,
+        "MainPrice":3500
+    },
+    {
+        "Route":"Chandigarh to Shimla",
+        "Fare":"Fare Start",
+        "DiscountPrice": 2499,
+        "MainPrice":3000
+    },
+    {
+        "Route":"Chandigarh to Noida",
+        "Fare":"Fare Start",
+        "DiscountPrice": 3599,
+        "MainPrice":4000
+    },
+    {
+        "Route":"Chandigarh to Manali",
+        "Fare":"Fare Start",
+        "DiscountPrice": 4499,
+        "MainPrice":5000
+    },
+    {
+        "Route":"Chandigarh to Jammu",
+        "Fare":"Fare Start",
+        "DiscountPrice": 4499,
+        "MainPrice":5000
+    },
+    {
+        "Route":"Delhi to Chandigarh",
+        "Fare":"Fare Start",
+        "DiscountPrice": 2999,
+        "MainPrice":3500
+    },
+    {
+        "Route":"Chandigarh to Jaipur",
+        "Fare":"Fare Start",
+        "DiscountPrice": 7999,
+        "MainPrice":8500
+    }
+]

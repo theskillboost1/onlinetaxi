@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: 
+Disallow: /cgi-bin/
+Disallow: /@dmin
+Disallow: /adminpannel
+Disallow: /addoneway
+Disallow: /addround
+Disallow: /addhourly
+Sitemap: https://onlinetaxi.co.in/sitemap.xml

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="./Images/Online Taxi - Favicon.png">
+    <style>
+        .mainn {
+            position: relative;
+            top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid" style="background-image: url(./Images/taxi-car-bokeh-lights.jpg); background-size: cover; background-position: center;">
+    <div class="main container" style="min-height: 70vh; ">
+        <div class="row pt-5">
+            <div class="col-md-12 order-last order-md-first d-flex align-items-center  mb-5 mb-md-0">
+                <div class="text text-light">
+                    <!-- <h5 class="text-secondary">Explore the world!</h5> -->
+                    <h1 class="display-2 fw-bold my-2">Your Ride is Just a Tap Away!</h1>
+                    <p class="mb-4">Book your rides instantly and enjoy seamless transportation with
+                        our top online taxi platform - always reliable, always convenient.</p>
+                    <!-- <button class="btn px-4 shadow rounded-0" style="background-color: orange;">Book Now</button> -->
+                </div>
+            </div>
+            <div class="col-md-12  mt-md-5 mb-5 mb-md-0 " >
+                <!-- <img src="./Images/mohalicabs.png" alt="" width="100%"> -->
+
+                <div class="mainn " id="Mainform">
+                    <div class="buton ">
+                        <button class="btn links " style="border-radius: 0; width: 300px;
+                       border-color: #5cd7b0; background-color: white;" onclick="Local(event, 'Loacality1')" id="defaultn">OutStation</button>
+                        <button class="btn  links " onclick="Local(event, 'Loacality2')"
+                            style="border-radius: 0; width: 300px; border-color: #5cd7b0; background-color: white;">Local</button>
+                    </div>
+
+                    <div style=" min-height: 200px; background-color: white;
+                 overflow: hidden;" id="Loacality1" class="content shadow">
+
+                        <div class="d-flex ">
+                            <div class="tab " style="width: 40%;">
+                                <div class="row" style="background-color: white;  height: 60px;">
+                                    <div class="col-4">
+                                        <button class="tablinks bg-white" onclick="openCity(event, 'London')"
+                                            id="defaultOpen">One Way  </button>
+                                    </div>
+                                    <div class="col-4">
+                                        <button class="tablinks bg-white " onclick="openCity(event, 'Paris')">Round
+                                            Trip</button>
+                                    </div>
+                                    <div class="col-4">
+                                        <button class="tablinks bg-white " onclick="openCity(event, 'Tokyo')">Multi
+                                            City</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="London" class="tabcontent">
+                            <form name="FormOneway">
+                                <div class="row g-3 ms-2 py-2 pe-2">
+                                    <div class="col-md-3 ms-md-3 p-2">
+                                        <!-- <input class="form-control form-input rounded-0" type="text"
+                                            placeholder="From City*" required> -->
+                                            <!-- <label for="" class=" h5">From </label> -->
+
+                                        <select onchange="r()" name="Fromcity" id="Fromcity"
+                                            class="form-control rounded-0 bg-transparent">
+                                            <!-- <option value="">Choose City</option> -->
+
+                                            <option value="Chandigarh">Chandigarh</option>
+
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 p-2 ">
+                                        <!-- <input class="form-control form-input rounded-0" type="text"
+                                            placeholder="To City*"  required> -->
+                                            <!-- <label for="" class=" h5">To </label> -->
+                                        <select onchange="r()" name="Tocity" id="Tocity" style="outline: none;" class="form-control rounded-0 bg-transparent outline-white">
+                                            <!-- <option value="">Choose City</option> -->
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Amritsar">Amritsar</option>
+                                            <option value="Shimla">Shimla</option>
+                                            <option value="Jammu">Jammu</option>
+                                            <option value="Manali">Manali</option>
+                                            <option value="Haridwar">Haridwar</option>
+                                            <option value="Noida">Noida</option>
+                                            <option value="Rishikesh">Rishikesh</option>
+                                            <option value="Gurgaon">Gurgaon</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="col-md-3 p-2">
+                                        <!-- <label for="" class=" h5">Date </label> -->
+                                        <input class="form-control form-input rounded-0 bg-transparent " type="date"
+                                            name="Datee" id="Date" required>
+
+                                    </div>
+
+                                    <div class="col-md-6 " hidden>
+                                        <input class="form-control form-input rounded-0" type="tel" name="Contact"
+                                            placeholder="Enter phone no." pattern="[789][0-9]{9}" id="Contact" required>
+
+                                    </div>
+                                    <!-- <div class="col-md-12">
+                                        <select name="Person" id="Person" class="form-control rounded-0">
+                                            <option value="">Choose Person</option>
+
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+
+                                        </select>
+                                    </div> -->
+
+
+                                    <div class="col-md-2 d-flex justify-content-center align-items-center ms-md-2 ">
+
+                                        <button class="btn rounded-0 w-100 h-75"
+                                            style="background-color: #5cd7b0;" onclick="OneWay()">Search Cab <span class="fa-fa-phone"></span></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <script>
+
+                            // function OnSub(event) {
+                            //     event.preventDefault();
+
+                            //     const FcityElement = document.getElementById("Fromcity");
+                            //     const TcityElement = document.getElementById("Tocity");
+                            //     const DateElement = document.getElementById("Date");
+                            //     const ContactElement = document.getElementById("Contact");
+
+                            //     const Fcity = FcityElement ? FcityElement.value : '';
+                            //     const Tcity = TcityElement ? TcityElement.value : '';
+                            //     const Datee = DateElement ? DateElement.value : '';
+                            //     const Contact = ContactElement ? ContactElement.value : '';
+
+                            //     if (!Fcity || !Tcity || !Datee || !Contact) {
+                            //         console.error("All fields are required");
+                            //         return false;
+                            //     }
+
+                            //     const Form1 = {
+                            //         Fromcity: Fcity,
+                            //         Tocity: Tcity,
+                            //         Date: Datee,
+                            //         Contact: Contact
+                            //     };
+                            // console.log(Form1)
+
+
+
+                            // }
+
+                            // console.log("hrllo");
+
+
+                            //  function OnSub(event) {
+                            //     event.preventDefault()
+                            //     Fcity = document.getElementById("Fromcity").value
+                            //     Tcity = document.getElementById("Tocity").value
+                            //     Datee = document.getElementById("Date").value
+                            //     Contact = document.getElementById("Contact").value
+                            // Form1 = {
+                            //         Fromcity:Fcity,
+                            //         Tocity:Tcity,
+                            //         Date:Datee,
+                            //         Contact:Contact
+                            //     }
+                            //     console.log(Form1)
+
+                            // }
+                        </script>
+                        <div id="Paris" class="tabcontent">
+                            <form name="FormRound">
+                                <div class="row g-3 mx-2 py-2">
+                                    <div class="col-md-3 ms-md-3 p-2">
+                                        <!-- <input class="form-control form-input rounded-0" type="text"
+                                            placeholder="From City*" required> -->
+                                            <!-- <label for="" class=" h5">From City</label> -->
+                                        <select onchange="r()" name="Fromcity1" id="Fromcity1"
+                                            class="form-control rounded-0 bg-transparent">
+                                            <!-- <option value="">Choose City</option> -->
+
+                                            <option value="Chandigarh">Chandigarh</option>
+
+
+                                        </select>
+                                    </div>
+
+                                    <!-- <div class="col-md-6">
+                                        <input class="form-control form-input rounded-0" type="text"
+                                            placeholder="From City*" name="Fromcity1" id="Fromcity1" required>
+
+                                    </div> -->
+                                    <div class="col-md-3 p-2">
+                                        <!-- <label for="" class="h5">To City</label> -->
+                                        <select onchange="r()" name="Tocity1" id="Tocity1"
+                                            class="form-control rounded-0 bg-transparent">
+                                            <!-- <option value="">Choose City</option> -->
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Amritsar">Amritsar</option>
+                                            <option value="Shimla">Shimla</option>
+                                            <option value="Jammu">Jammu</option>
+                                            <option value="Manali">Manali</option>
+                                            <option value="Haridwar">Haridwar</option>
+                                            <option value="Noida">Noida</option>
+                                            <option value="Rishikesh">Rishikesh</option>
+                                            <option value="Gurgaon">Gurgaon</option>
+                                        </select>
+                                        <!-- <input class="form-control form-input rounded-0" type="text"
+                                            placeholder="To City*" name="Tocity1" required> -->
+
+                                    </div>
+
+                                    <div class="col-md-3 p-2">
+                                        <!-- <label for="" class=" h5">Date </label> -->
+                                        <input class="form-control form-input rounded-0 bg-transparent " type="date">
+
+                                    </div>
+
+                                    <div class="col-md-6" hidden>
+                                        <input class="form-control form-input rounded-0" type="date" name="Datee1"
+                                            required>
+
+                                    </div>
+
+                                    <!-- <div class="col-md-6">
+                                        <input class="form-control form-input rounded-0" type="tel" name="Contact1"
+                                            placeholder="Enter phone no." required>
+
+                                    </div> -->
+                                    <!-- <div class="col-md-6">
+                                        <input class="form-control form-input rounded-0" type="date" name="Dateee1"
+                                            required>
+
+                                    </div> -->
+                                    <!-- <div class="col-md-6">
+                                        <select name="Person1" id="" class="form-control rounded-0">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+
+                                        </select>
+
+                                    </div> -->
+                                    <div class="col-md-2 d-flex justify-content-center align-items-center ms-md-2">
+                                        <button class="btn rounded-0 w-100 h-75" type="submit" value="Search Now" class="btn rounded-0"
+                                            style="background-color: #5cd7b0;" onclick="Roundtrip()">Search Cab</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="Tokyo" class="tabcontent">
+                            <form action="/multicity" method="post">
+                                <div class="row g-3 mx-2 py-3">
+
+
+                                    <div class="col-md-3 ms-md-3 ">
+                                        <input class="form-control form-input rounded-0 bg-transparent" type="text"
+                                            placeholder="From City*" name="Fromcity2" required>
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input class="form-control form-input rounded-0 bg-transparent" type="text"
+                                            placeholder="To City*" name="Tocity2" required>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <input class="form-control form-input rounded-0 bg-transparent" type="date"
+                                            name="Datee2" required>
+
+                                    </div>
+
+                                    <div class="col-md-2" hidden>
+                                        <input class="form-control form-input rounded-0 bg-transparent" type="tel" name="Contact2"
+                                            placeholder="Enter phone no." required>
+
+                                    </div>
+                                    <!-- <div class="col-12">
+                                        <select name="Person2" id="" class="form-control rounded-0">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+
+                                        </select>
+
+
+                                    </div> -->
+                                    <div class="col-md-2 d-flex justify-content-center align-items-center ms-md-2">
+
+                                        <button type="submit" class="btn rounded-0 w-100 h-75"
+                                            style="background-color: #5cd7b0;">Search Cab</button>
+                                    </div>
+                                    
+                                </div>
+                            </form>
+                        </div>
+
+                        <script>
+                            function openCity(evt, cityName) {
+                                var i, tabcontent, tablinks;
+                                tabcontent = document.getElementsByClassName("tabcontent");
+                                for (i = 0; i < tabcontent.length; i++) {
+                                    tabcontent[i].style.display = "none";
+                                }
+                                tablinks = document.getElementsByClassName("tablinks");
+                                for (i = 0; i < tablinks.length; i++) {
+                                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+                                }
+                                document.getElementById(cityName).style.display = "block";
+                                evt.currentTarget.className += " active";
+
+
+
+                            }
+
+                            // Get the element with id="defaultOpen" and click on it
+                            document.getElementById("defaultOpen").click();
+                            // document.getElementById("defaultOpen").style.backgroundColor="orange";
+
+                        </script>
+                    </div>
+
+
+
+                    <!-- loacal part -->
+
+                    <div style=" min-height: 200px; background-color:white;
+                 overflow: hidden;" id="Loacality2" class="content shadow">
+                        <div class=" ">
+                            <div class="tab " style="width: 40%;">
+                                <div class="row" style="background-color: white;  height: 60px;">
+                                    <div class="col-6">
+                                        <button class=" bg-white tabl rounded-0" onclick="City(event, 'city1')"
+                                            id="defaultO">Hourly
+                                            Basis</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class=" bg-white tabl rounded-0" onclick="City(event, 'city2')">Airport
+                                            Transfer</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="city1" class="tabc">
+                            <form name="Hourlyform">
+                                <div class="row g-3 mx-2 py-2">
+
+
+                                    <div class="col-md-3 ms-md-3 p-2">
+                                        <!-- <label for="" class=" h5">Select City</label> -->
+                                        <select name="Selectcity" id="Selectcity" class="form-control rounded-0 bg-transparent">
+                                            <!-- <option value="Select City">Select City</option> -->
+                                            <option value="Chandigarh">Chandigarh</option>
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Shimla">Shimla</option>
+                                            <option value="Manali">Manali</option>
+                                            <option value="Amritsar">Amritsar</option>
+                                            <option value="Ferozepur">Ferozepur</option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-3 p-2">
+                                        <!-- <label for="" class=" h5">Packages</label> -->
+                                        <select name="Selectpackage" id="" class="form-control rounded-0 bg-transparent">
+                                            <!-- <option value="Select Package">Select Package</option> -->
+                                            <option value="4hrs-40kms">4hrs - 40kms</option>
+                                            <option value="8hrs-80kms">8hrs - 80kms</option>
+                                            <option value="12hrs-120kms">12hrs - 120kms</option>
+                                            <option value="24hrs-250kms">24hrs - 250kms</option>
+
+                                            <option value="Local Airport Transfer">Local Airport Transfer</option>
+
+                                        </select>
+
+                                    </div>
+
+                                    <div class="col-md-3  p-2">
+                                        <!-- <label for="" class=" h5">Date</label> -->
+
+                                        <input class="form-control form-input rounded-0 bg-transparent" type="datetime-local"
+                                            name="Datee3" required>
+
+                                    </div>
+
+                                    <div class="col-md-6" hidden>
+                                        <input class="form-control form-input rounded-0" type="tel" name="Contact3"
+                                            placeholder="Enter phone no." required>
+
+                                    </div>
+
+                                    <div class="col-md-2 d-flex justify-content-center align-items-center ms-md-2">
+
+                                        <button type="submit" value="Search Now" class="btn rounded-0 w-100 h-75"
+                                            style="background-color: #5cd7b0;" onclick="Hourly()">Search Cab</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="city2" class="tabc">
+                            <form action="/airport" method="post">
+                                <div class="row g-3 mx-2 py-2">
+                                    <div class="col-md-3 ms-md-2 p-2">
+                                        <!-- <label for="" class="h5">Select City</label> -->
+                                        <select name="Selectcity1" id="" class="form-control rounded-0 bg-transparent">
+                                            <!-- <option value="Select City">Select City</option> -->
+                                            <option value="Chandigarh">Chandigarh</option>
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Shimla">Shimla</option>
+                                            <option value="Manali">Manali</option>
+                                            <option value="Amritsar">Amritsar</option>
+                                            <option value="Ferozepur">Ferozepur</option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-3 p-2">
+                                        <!-- <label for="" class=" h5">Select Airport</label> -->
+                                        <select name="Airport" id="" class="form-control rounded-0 bg-transparent">
+                                            <!-- <option value="To Airport">To Airport</option> -->
+                                            <option value="Chandigarh">Chandigarh</option>
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Amritsar">Amritsar</option>
+                                            <option value="Kolkata">Kolkata</option>
+
+                                            <option value="Local Airport Transfer">Local Airport Transfer</option>
+
+                                        </select>
+
+                                    </div>
+
+                                    <div class="col-md-3 p-2">
+                                        <!-- <label for="" class=" h5">Date </label> -->
+                                        <input class="form-control form-input rounded-0 bg-transparent" type="datetime-local"
+                                            name="Datee4" required>
+
+                                    </div>
+
+                                    <div class="col-md-6" hidden>
+                                        <input class="form-control form-input rounded-0" type="tel" name="Contact4"
+                                            placeholder="Enter phone no." required>
+
+                                    </div>
+
+                                    <div class="col-md-2 d-flex justify-content-center align-items-center ms-md-2">
+
+                                        
+                                        <button type="submit" value="Search Now" class="btn rounded-0 w-100 h-75"
+                                            style="background-color: #5cd7b0;">Search Cab</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                        <script>
+                            function City(evt, city) {
+                                var i, tabc, tabl;
+                                tabc = document.getElementsByClassName("tabc");
+                                for (i = 0; i < tabc.length; i++) {
+                                    tabc[i].style.display = "none";
+                                }
+                                tabl = document.getElementsByClassName("tabl");
+                                for (i = 0; i < tabl.length; i++) {
+                                    tabl[i].className = tabl[i].className.replace(" active", "");
+
+                                }
+                                document.getElementById(city).style.display = "block";
+                                evt.currentTarget.className += " active";
+
+
+
+                            }
+
+                            // Get the element with id="defaultOpen" and click on it
+                            document.getElementById("defaultO").click();
+                            // document.getElementById("defaultOpen").style.backgroundColor="orange";
+
+                        </script>
+
+                    </div>
+                    <!-- end -->
+                    <script>
+                        function Local(evt, Loacality) {
+                            var i, content, links;
+                            content = document.getElementsByClassName("content");
+                            for (i = 0; i < content.length; i++) {
+                                content[i].style.display = "none";
+                            }
+                            links = document.getElementsByClassName("links");
+                            for (i = 0; i < links.length; i++) {
+                                links[i].className = links[i].className.replace("active", "");
+
+                            }
+                            document.getElementById(Loacality).style.display = "block";
+                            evt.currentTarget.className += " active";
+
+
+
+                        }
+
+                        // Get the element with id="defaultOpen" and click on it
+                        document.getElementById("defaultn").click();
+                        // document.getElementById("defaultOpen").style.backgroundColor="orange";
+
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

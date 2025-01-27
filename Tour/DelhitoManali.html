@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css">
+    <link rel="icon" type="image/x-icon" href="./Images/Online Taxi - Favicon.png">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .divv {
+            border: 4px solid #5cd7b0;
+            border-radius: 50%;
+            border-top: 4px solid rgba(128, 128, 128, 0.61);
+            width: 35px;
+            height: 35px;
+            -webkit-animation: spin 1s linear infinite;
+            margin-top: 50px !important;
+            animation: spin 1s linear infinite;
+        }
+
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #progress {
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.459);
+            width: 100%;
+            height: 100vh;
+            top: 0;
+        }
+
+        #popup2 .fa {
+            font-size: 70px;
+            color: green;
+        }
+
+        #popup2 {
+            display: none;
+
+        }
+
+        .popup2 {
+
+
+            background-color: rgba(0, 0, 0, 0.374);
+            height: 100vh;
+            position: fixed;
+            width: 100%;
+            top: 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #tourdescription h3 {
+            font-weight: bold !important;
+        }
+    </style>
+</head>
+
+<body style="background-image: linear-gradient(to bottom, rgba(131, 244, 208, 0.724) 0%, #ffffff 100%);">
+
+
+    <script>
+        window.onload = async function () {
+            const params = new URLSearchParams(window.location.search);
+            const Tourno = params.get('Tourno');
+            console.log("Tour ID:", Tourno);
+
+            if (Tourno) {
+                try {
+                    // Fetch data based on the Tourno
+                    const response = await fetch(`https://onlinetaxi-sgl4.onrender.com/tourdetails/${Tourno}`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    const tourDetails = await response.json();
+                    console.log(tourDetails.Price);
+
+                    // Update the page with the fetched tour details
+                    document.getElementById('tourMainPrice').innerText = tourDetails.Price;
+                    document.getElementById('ToCty').value = tourDetails.TourCity;
+                    document.getElementById('Priceee').value = tourDetails.Price;
+                    document.getElementById('Tourcity').innerText = tourDetails.TourCity;
+                    document.getElementById('Tourdescription').innerText = tourDetails.TourDescription;
+                    document.getElementById('TourNo').innerText = tourDetails.Tourno;
+                    document.getElementById('Cityy').innerText = tourDetails.TourCity;
+                    document.getElementById('PPrice').innerText = tourDetails.Price;
+                    document.getElementById('descriptionn').innerText = tourDetails.TourDescription;
+                    document.getElementById('Citu').innerText = tourDetails.TourCity;
+                    document.getElementById('Prcu').innerText = tourDetails.Price;
+
+
+                } catch (error) {
+                    console.error('Error fetching tour details:', error);
+                    document.getElementById('tourdescription').innerHTML = '<p>Sorry, there was an error loading the tour details.</p>';
+                }
+            } else {
+                console.error('No Tour ID found in the URL.');
+            }
+
+            let Order = 0;
+            fetch('https://onlinetaxi-sgl4.onrender.com/findBookdata')
+                .then(response => response.json())
+                .then(json => {
+                    json.forEach(val => {
+                        Order = val.No;
+                    });
+                    Order = Order + 1;
+
+                    document.getElementById('Nooo').value = Order;
+                    document.getElementById('Realid').textContent = "STO" + Order;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+            let currentTime = new Date();
+            currentTime.setHours(currentTime.getHours() + 1);
+            currentTime.setMinutes(currentTime.getMinutes() + 20);
+            let hours = currentTime.getHours().toString().padStart(2, '0');
+            let minutes = currentTime.getMinutes().toString().padStart(2, '0');
+            let formattedTime = `${hours}:${minutes}`;
+            document.getElementById('timeInput1').value = formattedTime;
+
+        }
+    </script>
+    <div class="container-fluid ">
+        <div class="">
+            <div class="container ">
+                <div class="row align-items-center d-flex " style="width: 100%;">
+
+                    <div class="col p-0 callt text-black d-flex ">
+                        <div class="phonee px-3 ms-3 shadow" style="height: 40px; ">
+                            <ul class="d-flex py-2 ps-0" style="min-height: 35px; ">
+
+                                <li class="nav-item fa fa-phone  d-flex fw-normal pt-1 ">
+                                    <span> Talk :</span>
+                                </li>
+                                <li class="nav-item" style="list-style: none;"><a class="nav-link"
+                                        href="tel:9988222283">&nbsp +(91)
+                                        9988-2222-83</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-end textp  pe-0 ps-0 ">
+                        <ul class="d-flex ps-0 pt-3 ">
+                            <a href="https://www.instagram.com/online_taxi22">
+                                <li style="height:35px;width:35px; background-color:#5cd7b0;"
+                                    class="d-flex me-1 shadow justify-content-center text-dark align-items-center ">
+                                    <b class="fa fa-instagram"></b>
+                                </li>
+                            </a>
+                            <a href="https://www.facebook.com/share/QKavA74oJndJzUjf/?mibextid=qi2Omg">
+                                <li style="height:35px;width:35px;; background-color: #5cd7b0; "
+                                    class="d-flex  mx-1 justify-content-center text-dark align-items-center  ">
+                                    <b class="fa fa-facebook"></b>
+                                </li>
+                            </a>
+                            <a href="https://www.twitter.com/">
+                                <li style="height:35px;width:35px;; background-color: #5cd7b0; "
+                                    class="d-flex ms-1 justify-content-center text-dark align-items-center ">
+                                    <b class="fa fa-twitter"></b>
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" fxnumber " style="width: 100%;">
+        <div class=" text-black d-flex justify-content-between align-items-center" style=" width: 100%; height: 50px;">
+            <!-- <h1 class="fa fa-phone "> +91 77078-22378</h1> -->
+            <div style="width: 50%;">
+                <a href="tel:9988222283">
+                    <button class=" phonee btn  rounded-0  border-1 border" style="width: 100%;"><span
+                            class="fa fa-phone"></span> Call Now</button>
+                </a>
+            </div>
+            <div style="width: 50%;">
+                <a href="#Mainform">
+                    <button class="phoneb btn btn-warning rounded-0  border-1 border" style="width: 100%;"> Book
+                        Cab</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- fixed icon -->
+    <div class=" socialicon">
+        <ul class=" ps-md-0 imgggg pt-3 ">
+            <a href="https://wa.me/919988222283">
+                <li style="height:60px;width:60px; background-color:green; color: white; border-radius: 50%;"
+                    class="d-flex mb-2 shadow justify-content-center align-items-center " title="Text us">
+                    <b class="fa fa-whatsapp fa-2x"></b>
+                </li>
+            </a>
+        </ul>
+    </div>
+
+    <div class="container" style="position: sticky; top:10px;z-index: 100;">
+        <nav class="navbar navbar-expand-lg bg-white shadow ">
+            <!-- <div class="container-fluid"> -->
+            <div class="container ">
+                <a class="navbar-brand fw-bold" href="../index.html">
+                    <img src="../Images/sidhu_travels-removebg-preview.png" alt="" width="200px">
+                </a>
+                <button class="navbar-toggler rounded-0 border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon "></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ms-auto fw-bold text-white">
+                        <li class="nav-item ps-lg-5">
+                            <a class="nav-link " href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item ps-lg-5 ">
+                            <a class="nav-link " href="../about.html">About</a>
+                        </li>
+                        <li class="nav-item ps-lg-5 ">
+                            <a class="nav-link " href="../index.html#Tours">Our Tours</a>
+                        </li>
+                        <li class="nav-item ps-lg-5 ">
+                            <a class="nav-link " href="../reviews.html">Reviews</a>
+                        </li>
+
+                        <li class="nav-item ps-lg-5 ">
+                            <a class="nav-link " href="../contact.html">Contact us</a>
+                        </li>
+                    </ul>
+                    <a href="../index.html#Mainform">
+                        <button class="btn ms-lg-5 rounded-0 btn-warning">Book Now</button>
+                    </a>
+
+                </div>
+
+            </div>
+            <!-- </div> -->
+        </nav>
+    </div>
+
+    <div class="main container-fluid" style="min-height: 300px; ">
+
+        <div class="row" style="min-height: 300px; border-bottom: 1px solid white;">
+            <div class="col-md-8 offset-md-1 d-flex align-items-center">
+                <div class="text my-5 pt-5">
+                    <h5 class="text-secondary">Explore the world!</h5>
+                    <h1 class="display-3 fw-bold my-2" id="Tourcity"></h1>
+                    <p class="mb-4 display-6">
+                        <!-- <span id="tourDiscountPrice">  -->
+                        <span id="TourNo"></span> - <span id="Tourdescription"></span>
+                        <!-- </span> -->
+                    </p>
+                    <!-- <span id="tourFare"></span> -->
+                    <p class="fw-bold h5"> Price: ₹<span id="tourMainPrice"></span>/-</p>
+
+
+                    <!-- <button class="btn px-4 shadow" style="background-color: #5cd7b0;">Explore More</button> -->
+                    <!-- <p>Home - Tours</p> -->
+                </div>
+            </div>
+            <!-- <div class="col-md-6 mt-5">
+            </img src="./Images/mohalicabs.png" alt="" width="100%">
+            </div>
+        </div> -->
+        </div>
+        <!-- section -->
+        <div class="container">
+            <div>
+                <h1></h1>
+                <p class="text-center display-5 fw-bold py-3 "> Relaxing and Safe Ride with <span class="text-warning"
+                        style=" text-shadow: 1px 1px 1px grey; color: #5cd7b0;">Our Premium Taxi Service</span> </p>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div id="Imagee">
+                            <img src="../Images/Shimla,Manali,India(TN1008).png" width="95%" alt="Tour Image" class="shadow">
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <!-- <p class="py-3">Start your journey from <strong>Chandigarh to <span id="Loacation"></span></strong>.
+                    Enjoy the sights, local culture, and a smooth trip.
+                    Discover hidden gems, taste local flavors, and create lasting memories. Book your adventure today
+                    for an easy and fun experience!</p> -->
+
+                        <h5 class="display-6">Enjoy a Comfortable and Safe Ride with Our Taxi Service</h5>
+                        <p class="py-3">Start your journey from <strong>Chandigarh to <span id="Cityy"> Shimla,
+                                    India</span></strong>.
+                            Enjoy the sights, local culture, and a smooth trip with our reliable taxi services. Discover
+                            hidden gems, taste local flavors, and create lasting memories with our experienced drivers.
+                            Explore the city at your own pace with convenient pick-up and drop-off options. Book your
+                            adventure today for an easy and fun experience, and let us take care of your travel needs.
+                            Whether you're here for business or leisure, we offer comfort, safety, and convenience every
+                            step of the way! </p>
+
+                    </div>
+                    <!-- <img src="./Images/Chandigarh Beauti.jpg" alt="" width="100%"> -->
+                </div>
+
+            </div>
+        </div>
+        <!-- section -->
+
+        <div class="container mt-5">
+            <h2 class="fw-bold">Tour Description</h2>
+            <div id="tourdescription">
+                <p>Here’s a 7-day, 6-night travel itinerary for Chandigarh to <span id="Citu"></span> for ₹<span
+                        id="Prcu"></span>/-,
+                    designed to help you explore the beauty of the Himachal hills, indulge in adventure activities, and
+                    enjoy serene sightseeing.</p>
+                <p class="h2 pb-3 fw-bold text-warning" style=" text-shadow: 1px 1px 1px grey;"><strong>
+                        <span id="descriptionn"></span> - ₹<span id="PPrice"></span>/-</strong></p>
+
+                <p><strong>Day 1: Delhi to Shimla (Arrival & Evening Leisure)
+                    </strong></p>
+                <p><strong>Morning:</strong><br>
+                    Departure from Delhi: Start your journey early at around 6:00 AM from Delhi to Shimla (approximately
+                    350 km, 7-8 hours drive).
+                    You will stop for refreshments and enjoy scenic views along the way.
+                </p>
+                <p><strong>Afternoon:</strong><br>
+                    Arrival in Shimla: Reach Shimla by late afternoon. Check in to your hotel and relax after your long
+                    journey.
+                </p>
+                <p><strong>Evening:</strong><br>
+                    Mall Road Shimla: In the evening, visit the famous Mall Road for a leisurely walk. Enjoy shopping
+                    for woolen clothes, local handicrafts, and souvenirs. <br>
+                    Ridge & Scandal Point: Enjoy stunning views of the surrounding mountains and valleys. <br>
+                    Overnight stay: Return to your hotel for an overnight stay.</p>
+
+                <hr>
+                <p><strong>Day 2: Shimla Local Sightseeing
+                    </strong></p>
+                <p><strong>Morning:</strong><br>
+                    Jakhoo Temple: After breakfast, visit Jakhoo Temple, a prominent ancient temple dedicated to Lord
+                    Hanuman, located atop Jakhoo Hill. It offers panoramic views of Shimla.
+
+                </p>
+                <p><strong>Afternoon:</strong><br>
+                    The Mall Road & Christ Church: Visit the Christ Church, a colonial-style church located on Mall
+                    Road. Take a peaceful stroll around the Lakkar Bazaar, famous for wooden crafts and souvenirs. <br>
+                    Summer Hill: Explore Summer Hill, a serene location offering amazing views of Shimla.
+                </p>
+                <p><strong>Evening:</strong><br>
+                    Relax & Unwind: You can enjoy a quiet evening at your hotel or take a walk around the Shimla Ridge,
+                    a popular spot with breathtaking views.
+                </p>
+                <p><strong>Night:</strong><br>
+                    Overnight stay in Shimla.</p>
+                <hr>
+                <p><strong>Day 3: Shimla to Manali (Travel & Leisure)
+                    </strong></p>
+                <p><strong>Morning:</strong><br>
+                    Breakfast & Departure: After breakfast, check out from your hotel and begin your journey to Manali
+                    (approximately 250 km, 7-8 hours drive).
+                    Enjoy scenic views along the route as you travel through the hills, with a couple of refreshment
+                    stops.
+                </p>
+                <p><strong>Afternoon:</strong><br>
+                    Arrival in Manali: Reach Manali by evening and check-in to your hotel. Relax after the drive and
+                    unwind.
+                </p>
+                <p><strong>Evening:</strong><br>
+                    Mall Road Manali: Visit Mall Road, the heart of Manali, where you can shop for woolens, local
+                    handicrafts, and souvenirs. Enjoy the pleasant weather and scenic views.
+                    Overnight stay in Manali.
+                </p>
+                <hr>
+                <p><strong>Day 4: Solang Valley and Rohtang Pass (Adventure Day)
+                    </strong></p>
+                <p><strong>Morning:</strong><br>
+                    Solang Valley: After breakfast, visit Solang Valley, known for its adventure activities like
+                    paragliding, zip-lining, skiing (seasonal), and horse riding. If you prefer, you can simply enjoy
+                    the beautiful landscape.
+                </p>
+                <p><strong>Afternoon:</strong><br>
+                    Rohtang Pass (Seasonal): If you're visiting in the summer months (May to October), head towards
+                    Rohtang Pass, a famous snow-covered mountain pass. Here, you can enjoy activities like snowboarding
+                    and sledging (subject to weather conditions). <br>
+                    Lunch: Enjoy a scenic lunch amidst the snow at one of the local spots around Rohtang Pass.
+                </p>
+                <p><strong>Evening:</strong><br>
+                    Return to Manali: Head back to Manali for some relaxation.
+                    Dinner and overnight stay in Manali.
+
+                </p>
+
+                <hr>
+
+                <p><strong>Day 5: Manali Local Sightseeing
+                    </strong></p>
+                <p><strong>Morning:</strong><br>
+                    Hadimba Temple: After breakfast, visit the serene Hadimba Temple, a wooden temple dedicated to
+                    Goddess Hadimba, set amidst beautiful cedar forests.
+
+                </p>
+                <p><strong>Afternoon:</strong><br>
+                    Vashisht Hot Springs: Visit Vashisht Village and take a dip in the famous hot springs with natural
+                    mineral water, believed to have medicinal properties. <br>
+                    Manu Temple: Also visit the Manu Temple, dedicated to the sage Manu, who is believed to be the
+                    creator of human civilization.
+                </p>
+                <p><strong>Evening:</strong><br>
+                    Old Manali: Explore the peaceful and rustic Old Manali area. You can relax at local cafes and enjoy
+                    the scenic beauty of the Beas River.
+                    Overnight stay in Manali.
+
+
+                </p>
+
+
+                <hr>
+
+
+                <p><strong>Day 6: Manali to Kullu, Kasol, and Return to Manali
+                    </strong></p>
+                <p><strong>Morning:</strong><br>
+                    Kullu: After breakfast, embark on a day trip to Kullu, famous for its Kullu shawls and adventure
+                    activities like white-water rafting. You can visit the Raghunath Temple and enjoy scenic views.
+
+                </p>
+                <p><strong>Afternoon:</strong><br>
+                    Kasol: Continue your journey to Kasol, a picturesque village located along the Parvati River.
+                    Explore the charming surroundings, local cafes, and enjoy the stunning views of the valley.
+
+                </p>
+                <p><strong>Evening:</strong><br>
+                    Return to Manali: Head back to Manali by evening.
+                    Dinner and overnight stay in Manali.
+
+                </p>
+
+                <hr>
+
+                <p><strong>Day 7: Manali to Delhi (Return Journey)
+                    </strong></p>
+                <p><strong>Morning:</strong><br>
+                    Breakfast & Departure: After breakfast, check out from your hotel and start your return journey to
+                    Delhi (approximately 12-14 hours drive).
+
+                </p>
+                <p><strong>Afternoon:</strong><br>
+                    Stop for lunch and refreshments along the way.
+
+
+                </p>
+                <p><strong>Evening:</strong><br>
+                    Arrival in Delhi: Reach Delhi by late evening or night, depending on the traffic and breaks taken
+                    during the journey.
+
+                </p>
+                <hr>
+                <p><strong>Summary of the 7-Day Itinerary:</strong></p>
+                <ul>
+                    <li>Day 1: Delhi to Shimla; Arrival & Evening Leisure
+                    </li>
+                    <li>Day 2: Shimla Local Sightseeing
+                    </li>
+                    <li>Day 3: Shimla to Manali
+                    </li>
+                    <li>Day 4: Solang Valley & Rohtang Pass Adventure
+                    </li>
+                    <li>Day 5: Manali Local Sightseeing
+                    </li>
+                    <li>Day 6: Manali to Kullu, Kasol & Return to Manali
+                    </li>
+                    <li>Day 7: Return from Manali to Delhi
+                    </li>
+                </ul>
+                <hr>
+
+                <p><strong>Tour Inclusions:</strong><br>
+                    Accommodation: 6 nights in 3-star hotels (on twin-sharing basis) <br>
+                    Meals: Breakfast & Dinner included <br>
+                    Transport: Comfortable vehicle for the entire tour <br>
+                    Sightseeing: All sightseeing as per the itinerary <br>
+                    Driver & Guide: Knowledgeable driver/guide for your journey <br>
+                    Price: ₹29,999/- per person (on twin-sharing basis)
+                </p>
+                <hr>
+
+                <p><strong>Travel Tips:</strong><br>
+                    Clothing: Pack warm clothes, especially if you’re traveling during winter (November to February).
+                    <br>
+                    Activity Booking: Pre-book adventure activities like paragliding, skiing, and rafting to ensure
+                    availability. <br>
+                    Health & Safety: Carry medications, water, and snacks for the journey, as some areas may not have
+                    immediate access to shops.
+                </p>
+
+                <p>This 7-day itinerary offers a blend of scenic views, adventure activities, and spiritual exploration,
+                    making your journey from Delhi to Shimla and Manali an unforgettable experience!</p>
+            </div>
+        </div>
+        <!-- section -->
+        <div class="container text-center py-5">
+            <h4 style="color: #5cd7b0;" class="text-center pt-5">Online Taxi </h4>
+
+            <h2 class="display-4 pb-4">Terms & Conditions </h2>
+            <div class="row" style="list-style: none;">
+                <div class="col-md-6 text-start d-flex justify-content-center align-items-center">
+                    <div>
+                        <li><span class="fa fa-check-circle text-success h5"></span> Ріск uр & Drop</li>
+                        <li><span class="fa fa-check-circle text-success h5"></span> Sightseeing by car.</li>
+                        <li><span class="fa fa-check-circle text-success h5"></span> Transfers:
+                            Destination-Hotel-Destination.</li>
+                        <li><span class="fa fa-check-circle text-success h5"></span> Sightseeing as per tour itinerary.
+                        </li>
+                        <li><span class="fa fa-check-circle text-success h5"></span> All Toll and driver charges
+                            included</li>
+                        <li><span class="fa fa-check-circle text-success h5"></span> Inclusive of all taxes.</li>
+                    </div>
+                </div>
+                <div class="col-md-6 text-start d-flex justify-content-center align-items-center ps-0 ms-0">
+                    <div>
+                        <li><span class="fa fa-times-circle text-danger h5"></span> Personal expenses like shopping</li>
+                        <li><span class="fa fa-times-circle text-danger h5"></span> Entry fees at monuments or museums
+                        </li>
+                        <li><span class="fa fa-times-circle text-danger h5"></span> Meals other than specified</li>
+                        <li><span class="fa fa-times-circle text-danger h5"></span> Guide charges</li>
+                        <li><span class="fa fa-times-circle text-danger h5"></span> Airfare or train tickets</li>
+                        <!-- <li><span class="fa fa-times-circle text-danger h5" ></span> Travel insurance</li> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- section -->
+        <div class="container-fluid py-5">
+            <div class="container" data-aos="fade-down">
+                <div class="text-center">
+                    <h4 style="color: #5cd7b0;">TALK WITH OUR TEAM</h4>
+                    <h2 class="display-5 fw-bold"> Get Quote for This Tour
+                    </h2>
+                    <!-- <p>Our team is dedicated to providing exceptional customer service and addressing all your travel-related needs. Feel free to contact us through any of the channels above, and we'll be happy to assist you.</p> -->
+                </div>
+                <form action="https://onlinetaxi-sgl4.onrender.com/Bookform/" method="post" id="carForm"
+                    name="Bookingform">
+
+                    <div class="row my-5 p-md-5 py-5 " style="background-color: #5cd7b0;" id="ContactForm">
+                        <div class="form-group col-md">
+                            <label for="Name" class="my-2">Your Name:</label>
+                            <input type="text" class="form-control py-2 rounded-0" id="Name" placeholder="Name*"
+                                name="Name" required>
+                            <label class="my-2">Email:</label>
+                            <input type="email" class="form-control py-2 rounded-0" placeholder="Email (Optional)"
+                                name="Email2">
+                            <label for="inputEmail4" class="my-2">Phone:</label>
+                            <div class="input-group">
+                                <select class="form-select" id="countryCode" style="max-width: 80px;">
+                                    <option value="+91" selected>+91 (India)</option>
+                                    <option value="+1">+1 (USA)</option>
+                                    <option value="+44">+44 (UK)</option>
+                                    <option value="+61">+61 (Australia)</option>
+                                </select>
+                                <input class="form-control form-input rounded-0" type="text" placeholder="Phone Number*"
+                                    name="Phone" required pattern="[0-9]{10}"
+                                    title="Please enter a valid 10-digit phone number" oninput="validatePhone(this)"
+                                    required>
+                                <script>
+                                    function validatePhone(input) {
+                                        const phone = input.value;
+                                        if (phone.length > 10) {
+                                            input.value = phone.slice(0, 10);
+                                        }
+                                    }
+                                </script>
+                            </div>
+                            <label class="my-2">Address</label>
+                            <input class="form-control form-input rounded-0" type="text" placeholder="Address*"
+                                name="Address" required>
+                            <div class="col-md-6" hidden>
+                                <input class="form-control form-input rounded-0" type="datetime-local" name="Date1"
+                                    id="Date1" required>
+                            </div>
+                            <div class="col-md-6" hidden>
+                                <input class="form-control form-input rounded-0" type="text" placeholder="Route"
+                                    name="Route" id="Routee">
+                            </div>
+                            <div class="col-md-6" hidden>
+                                <input class="form-control form-input rounded-0" type="text" placeholder="OrderNo"
+                                    name="No" id="Nooo">
+                            </div>
+                            <div class="col-md-6" hidden>
+                                <input class="form-control form-input rounded-0" type="text" placeholder="Price"
+                                    name="Price" id="Priceee">
+                            </div>
+
+                            <div class="col-md-12" hidden>
+                                <input class="form-control form-input rounded-0" type="text" placeholder="From City"
+                                    name="To" id="ToCty" readonly>
+                            </div>
+
+                            <div class="col-md-12" hidden>
+                                <input class="form-control form-input rounded-0" type="text" placeholder="From City"
+                                    name="From" id="fromCity1" readonly>
+                            </div>
+
+                            <div class="col-md-6" hidden>
+                                <input class="form-control form-input rounded-0" type="text" placeholder="Car Name"
+                                    name="CarNamee" id="Carname">
+                            </div>
+                            <div class="col-md-6" hidden>
+                                <input class="form-control form-input rounded-0" id="timeInput1" type="time" name="Time"
+                                    required>
+                            </div>
+                            <script>
+                            </script>
+                            <script>
+                                document.getElementById('Routee').value = "Tour"
+                                document.getElementById('Carname').value = "Dzire/Sedan"
+                                document.getElementById('fromCity1').value = "Chandigarh"
+                            </script>
+                            <script>
+                                const now = new Date();
+                                const today = now.toISOString().split('T')[0];
+                                const currentTime = now.toTimeString().split(' ')[0].substring(0, 5);
+                                const dateInput1 = document.getElementById('Date1');
+                                dateInput1.value = `${today}T${currentTime}`;
+                                dateInput1.min = `${today}T${currentTime}`; 
+                            </script>
+                        </div>
+                        <div class="form-group col-md">
+                            <label for="" class="my-2">Date</label>
+                            <input style="text-transform: uppercase; " class="form-control form-input rounded-0"
+                                type="date" name="Date" id="Date" required>
+                            <script>
+                                var today1 = new Date().toISOString().split('T')[0];
+                                document.getElementById('Date').setAttribute('min', today1);
+                            </script>
+                            <label class="my-2">Messages</label>
+                            <textarea name="Email" class="form-control rounded-0" rows="6" cols="0"
+                                placeholder="Message*" required></textarea>
+                            <input type="Submit" class="btn btn-warning rounded-0 border-0 shadow mt-4 px-5 "
+                                style=" color: black;" value="Submit">
+                        </div>
+                    </div>
+                </form>
+                <br>
+            </div>
+        </div>
+        <!-- section  -->
+        <div class="container mb-5 crd" style="min-height: 90vh;">
+            <h4 class="text-center">OUR TOURS</h4>
+            <h2 class="display-3 text-center fw-bold">Explore the Beauty of India</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper" id="carda">
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+        <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.js"></script>
+        <script>
+            const swiper = new Swiper('.swiper-container', {
+                slidesPerView: 4,
+                spaceBetween: 7,
+                loop: true,
+                grabCursor: true,
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1,
+                    },
+                    520: {
+                        slidesPerView: 2,
+                    },
+                    950: {
+                        slidesPerView: 3,
+                    },
+                    1200: {
+                        slidesPerView: 4,
+                    },
+                },
+            });
+            async function fetchTourData() {
+                try {
+                    const response = await fetch('https://onlinetaxi-sgl4.onrender.com/bestroute');
+                    const json = await response.json();
+
+                    json.forEach((item) => {
+                        const id = item._id;
+                        const card = document.createElement('div');
+                        card.classList.add('swiper-slide');
+                        card.innerHTML = `
+                    <div class="card" onclick="redirectToDetails('${id}')"> 
+                        <img src="https://raw.githubusercontent.com/manpreet94560/project/refs/heads/main/Image/${item.Image1}" alt="${item.TourCity}" >
+                        <div class="card-body py-4">
+                            <p class="text-secondary">${item.TourCity}</p>
+                            <h5>${item.TourDescription}</h5>
+                            <p><span class="fa fa-star checked"></span><span class="text-secondary"> ${item.Review}</span></p>
+                        </div>
+                    </div>`;
+                        document.getElementById('carda').appendChild(card);
+                    });
+
+                    swiper.update();
+                } catch (error) {
+                    console.error("Error fetching the JSON data:", error);
+                }
+            }
+            function redirectToDetails(id) {
+                window.location.href = `tour.html?id=${id}`;
+            }
+            fetchTourData();
+        </script>
+        <!-- section -->
+        <div class="container-fluid p-0"
+            style="background-image: url(../images/taxi-car-bokeh-lights.jpg); background-size: cover;  min-height: 280px;">
+            <div style="background-color: #21252976; min-height: 280px " class="m-0 align-content-center ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 offset-md-5 text-dark">
+                            <h2 class="text-light display-6 fw-bold">Join with us for Creative Solutions and <br><span
+                                    class="display-5 fw-bold" style="color: #5cd7b0;">Outstanding Achievement.</span>
+                            </h2>
+                            <a href="./contact.html">
+                                <button class="btn my-2 shadow px-4 buttonn"
+                                    style="background-color: #5cd7b0; color: black;">Get Free Consultation</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+        <div class="container-fluid text-black" style="border-top: 1px solid black;">
+            <div class="container pb-5 ">
+                <footer>
+                    <div class="row">
+                        <div class="col-md-4 p-md-0  pt-3">
+                            <div class="d-flex align-items-center imgggg pt-3">
+                                <img src="./Images/sidhu_travels-removebg-preview.png" class="d-inline " alt=""
+                                    height="35px">
+                                <!-- <div style="font-size: 20px; color: #5cd7b0;"> <b class="ps-2"> Online Taxi</b></div> -->
+                            </div>
+                            <h5 style="font-size: 13px; padding: 5px;" class="text-secondary"><b></b> Taxi Services</b>
+                            </h5>
+                            <p class="me-3">Reliable and Convenient Online Taxi Services | Serving Cities Across India |
+                                Book
+                                Your Rides with Ease
+                            </p><br>
+                            <ul class="d-flex ps-0 ">
+                                <a href="https://www.instagram.com/online_taxi22">
+                                    <li style="height:35px;width:35px; background-color:#5cd7b0;"
+                                        class="d-flex me-1 shadow justify-content-center text-dark align-items-center ">
+                                        <b class="fa fa-instagram"></b>
+                                    </li>
+                                </a>
+                                <a href="https://www.facebook.com/share/QKavA74oJndJzUjf/?mibextid=qi2Omg">
+                                    <li style="height:35px;width:35px;; background-color: #5cd7b0; "
+                                        class="d-flex  mx-1 justify-content-center text-dark align-items-center  ">
+                                        <b class="fa fa-facebook"></b>
+                                    </li>
+                                </a>
+                                <a href="https://www.twitter.com/">
+                                    <li style="height:35px;width:35px;; background-color: #5cd7b0; "
+                                        class="d-flex mx-1 justify-content-center text-dark align-items-center ">
+                                        <b class="fa fa-twitter"></b>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 pt-3 ps-md-5">
+                            <div>
+                                <h2> Explore </h2><br>
+                                <ul type="none" class="ms-0 ps-0 ">
+                                    <li><a href="./index.html" class="nav-link fw-normal">Home</a></li>
+
+                                    <li><a href="./about.html" class="nav-link fw-normal">About</a></li>
+                                    <li><a href="./index.html" class="nav-link fw-normal">Services</a></li>
+                                    <li><a href="./reviews.html" class="nav-link fw-normal">Reviews</a></li>
+                                    <li><a href="./contact.html" class="nav-link fw-normal">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3 pt-3">
+                            <h2>Contact Us </h2><br>
+                            <ul type="none" class="ms-0 ps-0 contactus" style="color: black;">
+                                <li class="fa fa-phone pb-2"> <a href="tel:9988222283"
+                                        class=" text-decoration-none text-black">+(91)
+                                        9988-2222-83</a></li><br>
+                                <!-- <li class="fa fa-phone"> <a href="tel:96536-75538"
+                                class=" text-decoration-none text-black">+(91)
+                                -</a> </li><br> -->
+                                <li class="fa fa-envelope pb-3"><a href="mailto:onlinetaxi09@gmail.com"
+                                        class=" text-decoration-none text-black"> onlinetaxi09@gmail.com</a> </li><br>
+                                <li class="fa fa-map-marker	"> <a
+                                        href="https://www.google.com/maps/place/Online+Taxi+-+Mohali+Cab+services/@30.6895827,76.7210361,17z/data=!3m1!4b1!4m6!3m5!1s0x390feffd5f6692a7:0x4ed5baed32131319!8m2!3d30.6895781!4d76.723611!16s%2Fg%2F11whfj1m2q?entry=ttu&g_ep=EgoyMDI0MDkxNS4wIKXMDSoASAFQAw%3D%3D"
+                                        class="text-black">Online Taxi, sector 68, Mohali
+                                        <br>Punjab
+                                    </a></li>
+                            </ul>
+                        </div>
+                        <div class="col pt-3">
+                            <section id="map-section">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.0246444832705!2d76.72103607503578!3d30.689582687717802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feffd5f6692a7%3A0x4ed5baed32131319!2sOnline%20Taxi%20-%20Mohali%20Cab%20services!5e0!3m2!1sen!2sin!4v1726643689007!5m2!1sen!2sin"
+                                    width="100%" height="250" style="border:0;"></iframe>
+
+                            </section>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <!-- end about -->
+        <footer class=" p-2 border-top" style="background-color: #5cd7b0;">
+            <p class="text-dark pb-0 text-center ">All copyrights &#169; reserved by<span style="color:white"> Online
+                    Taxi</span>
+            </p>
+
+        </footer>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+
+        <div id="popup2">
+            <div class="text-center popup2">
+
+                <div class="popup-content p-5 bg-light">
+                    <!-- <img src="./Images/Submitted-unscreen.gif" alt="" style="border-radius: 50%;" width="500px"
+            height="300px"> -->
+                    <p class="fa fa-check-circle "></p>
+                    <h2>Booking successfully</h2>
+                    <h4 class="text-success">Booking id: <span id="Realid"></span></h4>
+                    <p>
+                        <span id="RRR"></span> Taxi booked:
+                        <span id="fromCity" class="fw-lighter"></span> To <span id="toCity" class="fw-lighter"></span>
+                    </p>
+
+                    <p class="fw-lighter"><span class="fw-bold">Note:</span> If we go away from location/address charges
+                        will be included</p>
+                    <button class="btn btn-success px-5 shadow rounded-0" onclick="Done()">Ok</button>
+                </div>
+            </div>
+        </div>
+        <div id="progress" style="display: none;">
+            <div class="container d-flex justify-content-center align-items-center h-100 text-light display-6">
+                <!-- <img src="./Images/sidhu_travels-removebg-preview.png" alt="Online Taxi" height="40px"> -->
+                <div style="display: flex;">
+                    <div class="">Thank you for choosing us!<br> Enjoy a safe and reliable.......</div>
+                    <div class="divv mt-4"></div>
+
+                </div>
+            </div>
+
+        </div>
+        <script>
+            const form = document.getElementById('carForm');
+            Popup = document.getElementById('popup2')
+            const progress = document.getElementById('progress');
+
+            form.onsubmit = function (e) {
+                // e.preventDefault(); 
+                progress.style.display = "block";
+
+                setTimeout(function () {
+                    progress.style.display = "none";
+                    Popup.style.display = "block";
+
+                }, 3000);
+
+            };
+            function Done() {
+                window.location.reload();
+            }
+        </script>
+
+
+</body>
+
+</html>

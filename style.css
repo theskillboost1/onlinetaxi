@@ -1,0 +1,590 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif ;
+}
+
+body {
+    background-image: linear-gradient(to bottom, rgba(131, 244, 208, 0.724) 0%, #ffffff 100%);
+    overflow-x: hidden !important;
+}
+
+
+.tab button {
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tripp input {
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.tripp select {
+
+    height: 45px;
+    border-radius: 6px;
+
+
+}
+
+.routes .card:hover {
+
+    background:
+        linear-gradient(to bottom, rgb(178, 243, 222, 100%) 0%, #ffffff 100%);
+    ;
+
+}
+
+
+
+
+
+.aboutsection li {
+    list-style: none;
+}
+
+.checked {
+    color: orange;
+
+}
+
+.swiper-pagination-bullet {
+    background-color: #6E93f7;
+    opacity: 1;
+
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #4070F4;
+}
+
+.boxx {
+    height: 450px;
+    width: 450px;
+    background-color: #5cd7b0;
+    border-radius: 40% 40% 40% 40%;
+    transform: rotate(-50deg);
+    outline: 1px solid #5cd7b0;
+    outline-offset: 15px;
+    position: relative;
+
+}
+
+.boxx1 {
+
+    transform: rotate(50deg);
+    padding-left: 30px;
+    padding-top: 90px;
+
+
+}
+
+.innner {
+    height: 300px;
+    width: 300px;
+}
+
+.icon1 {
+    position: absolute;
+    top: 150px;
+    left: -40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    transform: rotate(50deg);
+    background-color: #5cd7b0;
+
+}
+
+.icon2 {
+    position: absolute;
+    bottom: 150px;
+    right: -40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    transform: rotate(50deg);
+    background-color: #5cd7b0;
+
+}
+
+.icon3 {
+    position: absolute;
+    right: 180px;
+    bottom: -40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    transform: rotate(50deg);
+    background-color: #5cd7b0;
+
+}
+
+.icon4 {
+    position: absolute;
+    left: 180px;
+    top: -40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    transform: rotate(50deg);
+    background-color: #5cd7b0;
+
+
+}
+
+.linkss img {
+    height: 60px;
+    width: 60px;
+}
+
+.fxnumber {
+    display: none ;
+    position: fixed;
+    bottom: -5px;
+    z-index: 100;
+}
+
+@media screen and (max-width:400px) {
+    .image23 {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width:700px) {
+    .boxx {
+        height: 230px;
+        width: 230px;
+        /* margin-top: 50px; */
+    }
+
+    .callt {
+        display: none !important;
+    }
+
+    .textp {
+        justify-content: center !important;
+    }
+
+    .boxx1 {
+        padding-left: 20px;
+        padding-top: 20px;
+        font-size: 10px;
+    }
+
+    .innner {
+        height: 180px;
+        width: 180px;
+    }
+
+    .mainn {
+
+        top: 0px;
+    }
+
+    .img2 {
+        display: none;
+    }
+
+    .linkss img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .icon1 {
+        position: absolute;
+        top: 110px;
+        left: -30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transform: rotate(50deg);
+        background-color: #5cd7b0;
+
+    }
+
+    .icon2 {
+        position: absolute;
+        bottom: 110px;
+        right: -30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transform: rotate(50deg);
+        background-color: #5cd7b0;
+
+    }
+
+    .innner h3 {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .innner img {
+        height: 40px;
+    }
+
+    .icon3 {
+        position: absolute;
+        right: 120px;
+        bottom: -30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transform: rotate(50deg);
+        background-color: #5cd7b0;
+
+    }
+
+    .icon4 {
+        position: absolute;
+        left: 120px;
+        top: -30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transform: rotate(50deg);
+        background-color: #5cd7b0;
+
+
+    }
+
+    .fxnumber {
+        display: block;
+    }
+
+
+}
+
+.socialicon {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    z-index: 100;
+}
+
+.carddd {
+    min-height: 200px;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.backclr {
+    background-color: #5cd7b0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/* nav{
+    position: sticky !important;
+    top: 10px !important;
+    z-index: 100;
+    margin: 0px 10px;
+} */
+
+.active {
+    background-color:#ffc107 !important;
+}
+.tab .active{
+    border-bottom: 2px solid #ffc107 !important;
+    background-color: white !important;
+}
+
+td,
+th {
+    height: 80px;
+}
+
+#tbody button {
+    background-color: #ffc107;
+    border: none;
+    padding: 6px 15px;
+    /* box-shadow: 0 0 5px 1px gray; */
+}
+
+tbody tr:hover {
+    background-color: #ffc107 !important;
+    color: white !important;
+}
+
+tbody tr:hover button {
+    background-color: white !important;
+}
+
+thead tr {
+    background-color: #5cd7b0;
+}
+
+.mainn select,input {
+    height: 80px;
+    font-size: 25px;
+    font-weight: bold;
+    /* border: none !important; */
+
+
+}
+form button{
+    height: 80px !important;
+
+}
+select, input{
+    box-shadow: none !important;
+}
+
+@media screen and (max-width:992px) {
+
+    .tab{
+        width: 80% !important;
+    }
+}
+@media screen and (max-width:700px) {
+
+    .tab{
+        width: 100% !important;
+    }
+}
+.mainn {
+    position: relative;
+    top: 80px;
+}
+@media screen and (max-width:700px) {
+    .mainn {
+        position: relative;
+        top: 20px;
+    }
+    .hideimg{
+        display: none;
+    }
+    .scrool {
+        height: auto !important; /* Remove fixed height */
+        overflow-y: visible !important; /* Remove vertical scroll */
+    }
+}
+.mainn button{
+    font-size: 20px;
+}
+::placeholder{
+    font-size: 20px;
+    font-weight: bold;
+    /* color: black !important; */
+}
+#Fromcity{
+    font-size: 25px !important;
+    font-weight: bold;
+    color: black !important;  
+}
+
+input[type=date] {
+    font-weight: bold !important;
+}
+.buton button{
+    width: 300px;
+}
+@media screen and (max-width:770px) {
+    .buton button{
+        width: 200px;
+    }
+    .mainn select,input {
+        height: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        /* border: none !important; */
+    
+    
+    }
+    form button{
+        height: 50px !important;
+    
+    }
+    ::placeholder{
+        font-size: 18px;        
+        color: black !important;
+    }
+    td{
+        font-size: 10px;
+    }
+    .taxes{
+        font-size: 8px !important;
+      }
+      th{
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .routes img{
+        display: none;
+       
+      }
+      .routes .card{
+        background-color: white !important;
+      }
+       .buton button{
+        width: 50% !important;
+        justify-content: space-between !important;
+      } 
+      .Vector{
+        display: none;
+      }
+      
+}
+@media screen and (max-width:420px) {
+    .buton button{
+        width: 170px;
+    }
+}
+.phonee{
+    animation-name: example;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;  
+}
+
+@keyframes example {
+    0%   {background-color:#5cd7b0; }
+    100%  {background-color:#ffc107;}
+   
+  }
+
+  .phoneb{
+    animation-name: example1;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;  
+}
+@keyframes example1 {
+    0%  {background-color:#ffc107;}
+    100%   {background-color:#5cd7b0; }
+    
+   
+  }
+  a{
+    color: Black !important;
+  }
+  #TableData td{
+    width: 20%;
+  }
+
+  .taxes{
+    font-size: 13px;
+  }
+  s{
+    font-size: 17px !important;
+  }
+  .carsr{
+    width: 35% !important;
+  }
+  .input{
+font-size: 25px !important;
+font-weight: bold;
+ }
+ #Fromcity1 {
+    font-size: 25px !important;
+    font-weight: bold;
+ }
+ .carsr1{
+width: 10% !important;
+ }
+
+  #ContactForm input{
+    height: 50px;
+
+  }
+  .myUL {
+    position: absolute;
+    margin-top: 10px !important;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: none; /* Hidden by default */
+    border: 2px solid orange;
+    max-height: 200px !important;
+    overflow-y: auto;
+    z-index: 1;
+    max-width: 305px;
+    
+}
+
+.myUL li {
+    padding: 10px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.myUL li:hover {
+    background-color: #ffc107;
+}
+#London{
+    position: relative;
+}
+
+/* width */
+.mnmn::-webkit-scrollbar {
+    width: 4px !important;
+   
+  }
+  
+  /* Track */
+  .mnmn::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px white; 
+    
+  }
+  
+  /* Handle */
+  .mnmn::-webkit-scrollbar-thumb {
+    background: #5cd7b0;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .mnmn::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  .crd .swiper-container {
+    width: 100%;
+    overflow: hidden;
+}
+.crd .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+}
+.crd .card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 450px; /* Fixed height for card */
+}
+.crd img {
+    width: 100%; 
+    height: 250px;
+    /* object-fit: cover;  */
+}
+.crd .card-body {
+    min-height: 100px; 
+}
+.crd{
+    position: relative;
+}
+.swiper-button-next, .swiper-button-prev {
+    position: absolute;
+    top: 60% !important;
+    color: #007bff; 
+}
+
+
+  

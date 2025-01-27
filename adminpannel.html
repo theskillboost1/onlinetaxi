@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Pannel of Routes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link rel="icon" type="image/x-icon" href="./Images/Online Taxi - Favicon.png">
+    <style>
+        th,
+        td {
+            width: 200px;
+            height: 50px;
+        }
+    </style>
+
+</head>
+
+<body style=" height: 100vh;" class="bg-light">
+
+    <div class="container mt-5" style="position: sticky; top:10px; z-index: 100;">
+        <nav class="navbar navbar-expand-lg bg-white shadow">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="./@dmin.html">
+                    <img src="./Images/sidhu_travels-removebg-preview.png" alt="" width="200px">
+                </a>
+                <button class="navbar-toggler rounded-0 border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ms-auto fw-bold text-white">
+                        <li class="nav-item ps-lg-5 links"></li>
+                        <a class="nav-link" href="./@dmin.html">Home</a>
+                        </li>
+                        <li class="nav-item ps-lg-5 links" onclick="openCity(event, 'One-way')" id="defaultOpen">
+                            <a class="nav-link" href="#">Top Routes</a>
+                        </li>
+                        <li class="nav-item ps-lg-5 links" onclick="openCity(event, 'Round-trip')">
+                            <a class="nav-link" href="#">Tour Packages</a>
+                        </li>
+
+                    </ul>
+                    <!-- <button class="btn ms-lg-5 rounded-0" style="background-color: orange;">Book Now</button> -->
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid content bg-light" id="One-way">
+        <div class="container mt-5 table-task d-flex justify-content-center">
+            <div>
+                <h1 class="text-center mb-5 display-3 text-dark">Admin Panel (Top Tour)</h1>
+                <a href="./AddTour.html"> <button class="btn btn-success mb-3">Add Tour</button></a>
+                <div class="row">
+                    <div class="col">
+                        <div class="table table-striped">
+                            <table class="table table-light table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Routes</th>
+                                        <th>Fare</th>
+                                        <th>Discount Price</th>
+                                        <th>Actual Price</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts for Pagination and Data Fetching -->
+        <script>
+            fetch('https://onlinetaxi-sgl4.onrender.com/toproute')
+                .then(response => response.json())
+                .then(json => {
+                    json.forEach(val => {
+                        document.getElementById('tbody').innerHTML += `
+    <tr>
+        <td>${val.Route}</td>
+        <td>${val.Fare}</td>
+        <td>${val.DiscountPrice}</td>
+        <td>${val.MainPrice}</td>
+        <td><button class="btn btn-warning" onclick="update('${val._id}', '${val.DiscountPrice}', '${val.MainPrice}', '${val.Route}')">Edit Detail</button></td>
+        <td><button class="btn btn-danger" onclick="Deletetour('${val._id}')">Delete</button></td>
+    </tr>`;
+
+                    });
+                    console.log(json);
+                });
+        </script>
+
+        <script>
+            function update(id, discountPrice, mainPrice, route, fare) {
+                // Create an object with all the required fields
+                const carData = {
+                    DiscountPrice: discountPrice,
+                    MainPrice: mainPrice,
+                    Route: route,
+                    Fare: fare
+                };
+
+                // Store the object in localStorage
+                localStorage.setItem(id, JSON.stringify(carData));
+
+                // Redirect to the update page with the carId as a query parameter
+                window.location.href = `./udroute.html?carId=${id}`;
+            }
+
+
+            function Deletetour(id) {
+                const password = prompt("Please enter the password to delete:");
+                if (password === "32145") {
+                    fetch(`https://onlinetaxi-sgl4.onrender.com/deleteroute/${id}`, {
+                        method: 'DELETE',
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Failed to delete the route");
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.message) {
+                                alert(data.message);
+                                location.reload();
+                            } else {
+                                alert("Failed to delete the route. Please try again.");
+                            }
+                        })
+                        .catch(err => {
+                            console.error("Error:", err);
+                            alert("An error occurred while deleting the route.");
+                        });
+                } else {
+                    alert("Incorrect password. Deletion cancelled.");
+                }
+            }
+
+        </script>
+    </div>
+
+    <div class="container-fluid content bg-light" id="Round-trip" style="display: none;">
+        <div class="container mt-5 table-task d-flex justify-content-center">
+            <div>
+                <h1 class="text-center mb-5 display-3 text-dark">Admin Panel (Tour Packages)</h1>
+                <a href="./Addbesttour.html"> <button class="btn btn-success mb-3">Add Data</button></a>
+                <div class="row">
+                    <div class="col">
+                        <div class="table table-striped">
+                            <table class="table table-light table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tour City</th>
+                                        <th>Tour Description</th>
+                                        <th>Review</th>
+                                        <th>Price</th>
+                                        <th>Days Data</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody1"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container my-5"></div>
+
+        <script>
+        fetch('https://onlinetaxi-sgl4.onrender.com/bestroute')
+    .then(response => response.json())
+    .then(json => {
+        json.forEach(val => {
+            function truncateDescription(description) {
+                const maxLength = 100;
+                if (description && description.length > maxLength) {
+                    return description.substring(0, maxLength) + '...';
+                }
+                return description || 'No data available';
+            }
+
+            const truncatedDescription = truncateDescription(val.Description); // Truncate if too long
+
+            const daysDataFormatted = val.DaysData && val.DaysData.length > 0 ? val.DaysData.map(day => {
+                return `<p><strong>${day.heading || 'No heading'}:</strong> ${day.description || 'No description'}</p>`;
+            }).join('') : 'No Days Data available';
+
+            // Filter out the 'id' field from the DaysData array
+            const filteredDaysData = val.DaysData ? val.DaysData.map(day => {
+                const { id, ...rest } = day; // Destructure to remove the 'id' field
+                return rest; // Return the object without 'id'
+            }) : [];
+
+            // Update the table dynamically with the filtered DaysData
+            document.getElementById('tbody1').innerHTML += `
+                <tr>
+                    <td>${val.TourCity || 'No data'}</td> 
+                    <td>${val.TourDescription || 'No data'}</td> 
+                    <td>${val.Review || 'No data'}</td> 
+                    <td>${val.Price || 'No data'}</td> 
+                    <td><div>${daysDataFormatted}</div></td> 
+                    <td><button class="btn btn-warning" onclick="update1('${val._id}', '${val.TourCity || 'No data'}', '${val.TourDescription || 'No data'}', '${val.Review || 'No data'}', '${val.Price || 'No data'}', '${val.Imageu || 'No image'}', '${val.Image1 || 'No image'}', '${JSON.stringify(filteredDaysData)}')">Edit Detail</button></td>
+                    <td><button class="btn btn-danger" onclick="deletetour('${val._id}')">Delete</button></td>
+                </tr>`;
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+function update1(id, tourCity, tourDescription, review, price, imageu, image1, daysData) {
+    // Since `daysData` is passed as a stringified JSON, we need to parse it back
+    const parsedDaysData = JSON.parse(daysData); 
+
+    // Create the object to store in localStorage
+    const tourData = {
+        TourCity: tourCity,
+        TourDescription: tourDescription,
+        Review: review,
+        Price: price,
+        Imageu: imageu,
+        Image1: image1,
+        DaysData: parsedDaysData
+    };
+
+    // Store the data in localStorage
+    localStorage.setItem(id, JSON.stringify(tourData));
+
+    // Redirect to the update page
+    window.location.href = `./udbestroute.html?carId=${id}`;
+}
+
+            function deletetour(id) {
+                if (confirm('Are you sure you want to delete this route?')) {
+                    fetch(`https://onlinetaxi-sgl4.onrender.com/deletebestroute/${id}`, {
+                        method: 'DELETE'
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert('Tour deleted successfully!');
+                            location.reload(); // Reload the page to reflect changes
+                        })
+                        .catch(error => {
+                            console.error('Error deleting tour:', error);
+                            alert('Failed to delete tour');
+                        });
+                }
+            }
+        </script>
+    </div>
+
+
+    <script>
+        function openCity(evt, formName) {
+            var i, content, links;
+            content = document.getElementsByClassName("content");
+            for (i = 0; i < content.length; i++) {
+                content[i].style.display = "none";
+            }
+            links = document.getElementsByClassName("links");
+            for (i = 0; i < links.length; i++) {
+                links[i].className = links[i].className.replace(" active", "");
+            }
+            document.getElementById(formName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Trigger default open tab
+        document.getElementById("defaultOpen").click();
+    </script>
+
+
+
+</body>
+
+</html>

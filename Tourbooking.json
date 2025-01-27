@@ -1,0 +1,50 @@
+[
+    {
+        "Img":"./Images/Manali Beuti.jpg",
+        "city":"Manali, India",
+        "Address":"Chandigarh to Manali Tour 2 Night 3 Days at Special Discount",
+        "Rating":"4.9(1k Review)"
+    },
+    {
+        "Img":"./Images/Shimla Beauti.jpg",
+        "city":"Shimla, India",
+        "Address":"Chandigarh to Shimla Tour 1 Night 2 Days at Special Discount",
+        "Rating":"4.9(1k Review)"
+    },
+    {
+        "Img":"./Images/golden-temple.jpg",
+        "city":"Amritsar, India",
+        "Address":"Chandigarh to Amritsar Tour 1 Night 2 Days at Special Discount",
+        "Rating":"4.9(1k Review)"
+    },
+    {
+        "Img":"./Images/Noida Enjoy.jpg",
+        "city":"Noida, India",
+        "Address":"Chandigarh to Noida Tour 1 Night 2 Days at Special Discount",
+        "Rating":"4.9(1k Review)"
+    },
+    {
+        "Img":"./Images/jammu.jpg",
+        "city":"Jammu, India",
+        "Address":"Chandigarh to Jammu Tour 2 Night 3 Days at Special Discount",
+        "Rating":"4.9(1k Review)"
+    },
+    {
+        "Img":"./Images/Kashmir.avif",
+        "city":"Kashmir, India",
+        "Address":"Chandigarh to Kashmir Tour 3 Night 4 Days at Special Discount",
+        "Rating":"4.9(1k Review)"
+    },
+    {
+        "Img":"./Images/Dheradoon.webp",
+        "city":"Dehradun, India",
+        "Address":"Chandigarh to Dehradun Tour 2 Night 3 Days at Special Discount",
+        "Rating":"4.9(1k Review)"
+    },
+    {
+        "Img":"./Images/delhi.jpg",
+        "city":"Delhi, India",
+        "Address":"Chandigarh to Delhi Tour 1 Night 2 Days at Special Discount",
+        "Rating":"4.9(1k Review)"
+    }
+]

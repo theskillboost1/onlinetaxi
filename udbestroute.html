@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Detail of Top Route</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./Images/Online Taxi - Favicon.png">
+
+    <style>
+        .btn.active {
+            background-color: #ffc107;
+            border-color: #e0a800;
+        }
+
+        .btn {
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .card {
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            border: 1px solid #ced4da;
+            resize: vertical;
+        }
+
+        .toolbar button {
+            margin-right: 5px;
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            padding: 5px 10px;
+        }
+
+        .toolbar button:hover {
+            background-color: #e2e6ea;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            margin-top: 10px;
+        }
+
+        .day-info {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body style="background-color: #5cd7b0;">
+    <div class="container">
+        <div class="card p-4">
+            <div class="d-flex justify-content-center align-items-center my-3">
+                <img src="./Images/sidhu_travels-removebg-preview.png" alt="" width="250px">
+            </div>
+            <h2 class="mb-4 text-center fw-bold text-success text-decoration-underline">Update Tour Details</h2>
+            <form id="updateForm" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="newPrice" class="form-label">Current Discount Price: <span id="price" class="fw-bold"></span></label>
+                    <input type="text" id="newPrice" name="Price" class="form-control" placeholder="Enter new discount price" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newPrice2" class="form-label">Current Main Description: <span id="price2" class="fw-bold"></span></label>
+                    <input type="text" id="newPrice2" name="TourDescription" class="form-control" placeholder="Enter new main description" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newRoute" class="form-label">Current Route Name: <span id="route" class="fw-bold"></span></label>
+                    <input type="text" id="newRoute" name="TourCity" class="form-control" placeholder="Enter new route name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newReview" class="form-label">Current Review: <span id="review" class="fw-bold"></span></label>
+                    <input type="text" id="newReview" name="Review" class="form-control" placeholder="Enter new review" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newDescription" class="form-label">Current Description: <span id="description" class="fw-bold"></span></label>
+                    <div class="toolbar mb-2">
+                        <button type="button" class="btn btn-warning" id="boldBtn" onclick="toggleBold()"><i class="fa fa-bold"></i></button>
+                        <button type="button" class="btn btn-warning" id="italicBtn" onclick="toggleItalic()"><i class="fa fa-italic"></i></button>
+                        <button type="button" class="btn btn-warning" id="linkBtn" onclick="addLink()"><i class="fa fa-link"></i></button>
+                        <button type="button" class="btn btn-warning" id="fontSizeBtn" onclick="increaseFontSize()"><i class="fa fa-font"></i></button>
+                        <button type="button" class="btn btn-warning" id="breakLineBtn" onclick="insertBreak()">Break Line</button>
+                    </div>
+                    <div id="newDescriptionDiv" contenteditable="true" class="form-control" style="min-height: 200px; border: 1px solid #ced4da; padding: 10px;"></div>
+
+                    <textarea id="newDescription" name="Description" class="form-control" style="display:none;" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="newImage" class="form-label">Current Main Image: <span id="Imageu" class="fw-bold"></span></label>
+                    <input type="file" id="newImage" name="Imageu" class="form-control" onchange="previewImage(event, 'previewImage')">
+                    <img id="previewImage" class="preview-img" src="#" alt="Main Image Preview" style="display: none;">
+                </div>
+                <div class="mb-3">
+                    <label for="newHomeImage" class="form-label">Current Home Image: <span id="Image1" class="fw-bold"></span></label>
+                    <input type="file" id="newHomeImage" name="Image1" class="form-control" onchange="previewImage(event, 'previewHomeImage')">
+                    <img id="previewHomeImage" class="preview-img" src="#" alt="Home Image Preview" style="display: none;">
+                </div>
+                <div class="mb-3">
+                    <label for="DaysData" class="form-label">Days Data</label>
+                    <div id="daysContainer"></div>
+                    <button type="button" class="btn btn-info" onclick="addDayInput()">Add Day</button>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-success px-5" value="Update">
+                </div>
+            </form>
+            <div id="daysDisplayContainer" class="mt-4">
+            </div>
+        </div>
+    </div>
+    <script>
+        let dayCount = 0;
+
+        function toggleBold() {
+            document.execCommand('bold', false, null);
+            updateButtonStates();
+        }
+
+        function toggleItalic() {
+            document.execCommand('italic', false, null);
+            updateButtonStates();
+        }
+
+        function addLink() {
+            let url = prompt("Enter the URL");
+            if (url) {
+                document.execCommand('createLink', false, url);
+            }
+            updateButtonStates();
+        }
+
+        function increaseFontSize() {
+            document.execCommand('fontSize', false, 4);
+            updateButtonStates();
+        }
+
+        function insertBreak() {
+            document.execCommand('insertHTML', false, '<br>');
+            updateButtonStates();
+        }
+
+        function syncContentToTextarea() {
+            const content = document.getElementById('newDescriptionDiv').innerHTML;
+            document.getElementById('newDescription').value = content;
+        }
+
+        document.querySelector('form').addEventListener('submit', function (event) {
+            syncContentToTextarea();
+        });
+        function updateButtonStates() {
+            const boldBtn = document.getElementById('boldBtn');
+            const italicBtn = document.getElementById('italicBtn');
+            const linkBtn = document.getElementById('linkBtn');
+            const fontSizeBtn = document.getElementById('fontSizeBtn');
+
+            boldBtn.classList.toggle('active', document.queryCommandState('bold'));
+            italicBtn.classList.toggle('active', document.queryCommandState('italic'));
+            linkBtn.classList.toggle('active', document.queryCommandState('createLink'));
+            fontSizeBtn.classList.toggle('active', document.queryCommandState('fontSize'));
+        }
+        function previewImage(event, imgId) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById(imgId);
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        function addDayInput() {
+            const dayContainer = document.getElementById('daysContainer');
+            dayCount++;
+            const dayDiv = document.createElement('div');
+            dayDiv.classList.add('mb-3');
+            dayDiv.id = `day${dayCount}`;
+            const headingLabel = document.createElement('label');
+            headingLabel.setAttribute('for', `dayHeading${dayCount}`);
+            headingLabel.classList.add('form-label');
+            headingLabel.textContent = `Day ${dayCount} Heading:`;
+            dayDiv.appendChild(headingLabel);
+            const headingInput = document.createElement('input');
+            headingInput.type = 'text';
+            headingInput.id = `dayHeading${dayCount}`;
+            headingInput.classList.add('form-control');
+            headingInput.name = `DaysData[${dayCount}].heading`;
+            dayDiv.appendChild(headingInput);
+            const descriptionLabel = document.createElement('label');
+            descriptionLabel.setAttribute('for', `dayDescription${dayCount}`);
+            descriptionLabel.classList.add('form-label');
+            descriptionLabel.textContent = `Day ${dayCount} Description:`;
+            dayDiv.appendChild(descriptionLabel);
+            const descriptionInput = document.createElement('input');
+            descriptionInput.type = 'text';
+            descriptionInput.id = `dayDescription${dayCount}`;
+            descriptionInput.classList.add('form-control');
+            descriptionInput.name = `DaysData[${dayCount}].description`;
+            dayDiv.appendChild(descriptionInput);
+            dayContainer.appendChild(dayDiv);
+        }
+        window.onload = function () {
+            const params = new URLSearchParams(window.location.search);
+            const carId = params.get('carId');
+            if (carId) {
+                const carData = JSON.parse(localStorage.getItem(carId));
+                if (carData) {
+                    document.getElementById('price').textContent = carData.Price;
+                    document.getElementById('newPrice').value = carData.Price;
+                    document.getElementById('price2').textContent = carData.TourDescription;
+                    document.getElementById('newPrice2').value = carData.TourDescription;
+                    document.getElementById('route').textContent = carData.TourCity;
+                    document.getElementById('newRoute').value = carData.TourCity;
+                    document.getElementById('review').textContent = carData.Review;
+                    document.getElementById('newReview').value = carData.Review;
+                    document.getElementById('description').textContent = carData.Description;
+                    document.getElementById('newDescriptionDiv').innerHTML = carData.Description;
+                    if (carData.DaysData) {
+                        carData.DaysData.forEach((day, index) => {
+                            addDayInput();
+                            document.getElementById(`dayHeading${index + 1}`).value = day.heading;
+                            document.getElementById(`dayDescription${index + 1}`).value = day.description;
+                        });
+                        const daysDisplayContainer = document.createElement('div');
+                        daysDisplayContainer.classList.add('mt-4');
+                        daysDisplayContainer.innerHTML = '<h4>Days Data:</h4>';
+                        carData.DaysData.forEach((day, index) => {
+                            const dayInfo = document.createElement('div');
+                            dayInfo.classList.add('day-info');
+                            dayInfo.innerHTML = `<strong>Day ${index + 1}:</strong> 
+                                                 <p><strong>Heading:</strong> ${day.heading}</p>
+                                                 <p><strong>Description:</strong> ${day.description}</p>`;
+                            daysDisplayContainer.appendChild(dayInfo);
+                        });
+                        document.getElementById('daysDisplayContainer').appendChild(daysDisplayContainer);
+                    }
+                    document.getElementById('Imageu').textContent = carData.Imageu;
+                    if (carData.Imageu) {
+                        document.getElementById('previewImage').src = carData.Imageu;
+                        document.getElementById('previewImage').style.display = 'block';
+                    }
+
+                    document.getElementById('Image1').textContent = carData.Image1;
+                    if (carData.Image1) {
+                        document.getElementById('previewHomeImage').src = carData.Image1;
+                        document.getElementById('previewHomeImage').style.display = 'block';
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+</html>

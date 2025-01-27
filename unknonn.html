@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #myUL {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: none; /* Hidden by default */
+            border: 1px solid #ddd;
+            max-height: 200px;
+            overflow-y: auto; /* Scrollable if list is too long */
+        }
+
+        #myUL li {
+            padding: 10px;
+            background-color: #f6f6f6;
+            cursor: pointer;
+        }
+
+        #myUL li:hover {
+            background-color: #ddd;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+
+<h2>City Search</h2>
+
+<input list="list" onchange="One()" name="Fromcity" id="Fromcity"
+    class="form-control rounded-0 bg-transparent" value="Chandigarh, India"
+    onkeyup="filterCities()" placeholder="Search for cities...">
+
+<ul id="myUL">
+    <li value="Abohar, Punjab, India">Abohar, Punjab, India</li>
+    <li value="Adampur, Punjab, India">Adampur, Punjab, India</li>
+    <li value="Ahmedabad, Gujarat, India">Ahmedabad, Gujarat, India</li>
+    <li value="Ajmer, Rajasthan, India">Ajmer, Rajasthan, India</li>
+    <li value="Aligarh, Uttar Pradesh, India">Aligarh, Uttar Pradesh, India</li>
+    <li value="Ambala Cantt, Haryana, India">Ambala Cantt, Haryana, India</li>
+    <li value="Ambala, Haryana, India">Ambala, Haryana, India</li>
+    <li value="Amritsar, Punjab, India">Amritsar, Punjab, India</li>
+    <li value="Anandpur Sahib, Punjab, India">Anandpur Sahib, Punjab, India</li>
+    <li value="Chandigarh, India" selected>Chandigarh, India</li>
+    <!-- Add more cities as per your requirement -->
+</ul>
+
+<script>
+// Function to filter cities based on user input
+function filterCities() {
+    var input, filter, ul, li, i, txtValue;
+    input = document.getElementById('Fromcity');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+
+    // Display the list when typing starts
+    if (input.value === "") {
+        ul.style.display = "none";
+    } else {
+        ul.style.display = "block";
+    }
+
+    // Filter the list
+    for (i = 0; i < li.length; i++) {
+        txtValue = li[i].textContent || li[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+// Set selected city in the input field and hide the list
+document.getElementById("myUL").addEventListener("click", function(e) {
+    if (e.target && e.target.nodeName == "LI") {
+        document.getElementById("Fromcity").value = e.target.innerText;
+        document.getElementById("myUL").style.display = "none"; // Hide the list after selection
+    }
+});
+</script>
+
+</body>
+</html>
