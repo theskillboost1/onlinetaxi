@@ -587,78 +587,95 @@
                 <br>
             </div>
         </div>
-        <!-- section  -->
-        <div class="container mb-5 crd" style="min-height: 90vh;">
-            <h4 class="text-center">OUR TOURS</h4>
-            <h2 class="display-3 text-center fw-bold">Explore the Beauty of India</h2>
-            <div class="swiper-container">
-                <div class="swiper-wrapper" id="carda">
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </div>
-        <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.js"></script>
-        <script>
-            const swiper = new Swiper('.swiper-container', {
-                slidesPerView: 4,
-                spaceBetween: 7,
-                loop: true,
-                grabCursor: true,
-                autoplay: {
-                    delay: 2000,
-                    disableOnInteraction: false,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                breakpoints: {
-                    0: {
-                        slidesPerView: 1,
-                    },
-                    520: {
-                        slidesPerView: 2,
-                    },
-                    950: {
-                        slidesPerView: 3,
-                    },
-                    1200: {
-                        slidesPerView: 4,
-                    },
-                },
-            });
-            async function fetchTourData() {
-                try {
-                    const response = await fetch('https://onlinetaxi-sgl4.onrender.com/bestroute');
-                    const json = await response.json();
+    <!-- section -->
 
-                    json.forEach((item) => {
-                        const id = item._id;
-                        const card = document.createElement('div');
-                        card.classList.add('swiper-slide');
-                        card.innerHTML = `
-                    <div class="card" onclick="redirectToDetails('${id}')"> 
-                        <img src="https://raw.githubusercontent.com/manpreet94560/project/refs/heads/main/Image/${item.Image1}" alt="${item.TourCity}" >
-                        <div class="card-body py-4">
+
+    <div class="container my-5 pt-5 crd" style="min-height: 80vh;" id="Tours">
+        <h4 class="text-center">OUR TOURS</h4>
+        <h2 class="display-3 text-center fw-bold">Explore the Beauty of India</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="carda">
+                <!-- Dynamically generated swiper-slide elements will go here -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+    </div>
+
+    <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            slidesPerView: 4,
+            spaceBetween: 7,
+            loop: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                520: {
+                    slidesPerView: 2,
+                },
+                950: {
+                    slidesPerView: 3,
+                },
+                1200: {
+                    slidesPerView: 4,
+                },
+            },
+        });
+
+
+
+        // Fetch Tour Booking Data
+        async function fetchTourData() {
+            try {
+                const response = await fetch('https://onlinetaxi-sgl4.onrender.com/bestroute');
+                const json = await response.json();
+
+                json.forEach((item) => {
+                    const Path = item.Path
+                    const Tourno = item.Tourno;
+                    const card = document.createElement('div');
+                    card.classList.add('swiper-slide');
+                    card.innerHTML = `
+                    <div class="card" onclick="redirectToDetails('${Path}','${Tourno}')"> 
+                        <img src="https://raw.githubusercontent.com/manpreet94560/project/refs/heads/main/Image/${item.Image1}" alt="${item.TourCity}">
+                        <div class="card-body py-4" style="position:relative;">
+                        <div style="position:absolute; top:0px; left:50%;  transform: translate(-50%, -50%);">
+                            <button class="btn btn-warning rounded-0 text-white" onclick="redirectToDetails('${Path}','${Tourno}')">Learn More</button></div>
+
                             <p class="text-secondary">${item.TourCity}</p>
                             <h5>${item.TourDescription}</h5>
                             <p><span class="fa fa-star checked"></span><span class="text-secondary"> ${item.Review}</span></p>
                         </div>
                     </div>`;
-                        document.getElementById('carda').appendChild(card);
-                    });
+                    document.getElementById('carda').appendChild(card);
+                });
 
-                    swiper.update();
-                } catch (error) {
-                    console.error("Error fetching the JSON data:", error);
-                }
+                swiper.update();
+            } catch (error) {
+                console.error("Error fetching the JSON data:", error);
             }
-            function redirectToDetails(id) {
-                window.location.href = `tour.html?id=${id}`;
-            }
-            fetchTourData();
-        </script>
+        }
+
+        function redirectToDetails(Path, Tourno) {
+            window.location.href = `./${Path}?Tourno=${Tourno}`;
+        }
+
+        fetchTourData();
+    </script>
+
+    <!-- Section -->
         <!-- section -->
         <div class="container-fluid p-0"
             style="background-image: url(../images/taxi-car-bokeh-lights.jpg); background-size: cover;  min-height: 280px;">
