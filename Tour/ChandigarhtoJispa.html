@@ -86,7 +86,7 @@
             if (Tourno) {
                 try {
                     // Fetch data based on the Tourno
-                    const response = await fetch(`https://onlinetaxi-sgl4.onrender.com/tourdetails/${Tourno}`);
+                    const response = await fetch(`https://onlinetaxi-sgl4-je33.onrender.com/tourdetails/${Tourno}`);
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
@@ -116,7 +116,7 @@
             }
 
             let Order = 0;
-            fetch('https://onlinetaxi-sgl4.onrender.com/findBookdata')
+            fetch('https://onlinetaxi-sgl4-je33.onrender.com/findBookdata')
                 .then(response => response.json())
                 .then(json => {
                     json.forEach(val => {
@@ -464,7 +464,7 @@ Safety: Make sure your vehicle is well-maintained for mountain travel, and have 
                     </h2>
                     <!-- <p>Our team is dedicated to providing exceptional customer service and addressing all your travel-related needs. Feel free to contact us through any of the channels above, and we'll be happy to assist you.</p> -->
                 </div>
-                <form action="https://onlinetaxi-sgl4.onrender.com/Bookform/" method="post" id="carForm"
+                <form action="https://onlinetaxi-sgl4-je33.onrender.com/Bookform/" method="post" id="carForm"
                     name="Bookingform">
 
                     <div class="row my-5 p-md-5 py-5 " style="background-color: #5cd7b0;" id="ContactForm">
@@ -621,7 +621,7 @@ Safety: Make sure your vehicle is well-maintained for mountain travel, and have 
         // Fetch Tour Booking Data
         async function fetchTourData() {
             try {
-                const response = await fetch('https://onlinetaxi-sgl4.onrender.com/bestroute');
+                const response = await fetch('https://onlinetaxi-sgl4-je33.onrender.com/bestroute');
                 const json = await response.json();
 
                 json.forEach((item) => {

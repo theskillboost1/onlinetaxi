@@ -80,7 +80,7 @@
 
         <!-- Scripts for Pagination and Data Fetching -->
         <script>
-            fetch('https://onlinetaxi-sgl4.onrender.com/toproute')
+            fetch('https://onlinetaxi-sgl4-je33.onrender.com/toproute')
                 .then(response => response.json())
                 .then(json => {
                     json.forEach(val => {
@@ -120,7 +120,7 @@
             function Deletetour(id) {
                 const password = prompt("Please enter the password to delete:");
                 if (password === "32145") {
-                    fetch(`https://onlinetaxi-sgl4.onrender.com/deleteroute/${id}`, {
+                    fetch(`https://onlinetaxi-sgl4-je33.onrender.com/deleteroute/${id}`, {
                         method: 'DELETE',
                     })
                         .then(response => {
@@ -179,7 +179,7 @@
         <div class="container my-5"></div>
 
         <script>
-        fetch('https://onlinetaxi-sgl4.onrender.com/bestroute')
+        fetch('https://onlinetaxi-sgl4-je33.onrender.com/bestroute')
     .then(response => response.json())
     .then(json => {
         json.forEach(val => {
@@ -244,7 +244,7 @@ function update1(id, tourCity, tourDescription, review, price, imageu, image1, d
 
             function deletetour(id) {
                 if (confirm('Are you sure you want to delete this route?')) {
-                    fetch(`https://onlinetaxi-sgl4.onrender.com/deletebestroute/${id}`, {
+                    fetch(`https://onlinetaxi-sgl4-je33.onrender.com/deletebestroute/${id}`, {
                         method: 'DELETE'
                     })
                         .then(response => response.json())

@@ -89,7 +89,7 @@
 
         async function fetchOneWayData() {
             try {
-                const response = await fetch('https://onlinetaxi-sgl4.onrender.com/findcar');
+                const response = await fetch('https://onlinetaxi-sgl4-je33.onrender.com/findcar');
                 oneWayData = await response.json();
                 console.log('One-way data fetched:', oneWayData);
             } catch (error) {
@@ -100,7 +100,7 @@
 
         async function fetchRoundtripData() {
             try {
-                const response = await fetch('https://onlinetaxi-sgl4.onrender.com/roundtrip');
+                const response = await fetch('https://onlinetaxi-sgl4-je33.onrender.com/roundtrip');
                 roundtripData = await response.json();
                 console.log('Roundtrip data fetched:', roundtripData);
             } catch (error) {
@@ -110,7 +110,7 @@
 
         async function fetchHourlyData() {
             try {
-                const response = await fetch('https://onlinetaxi-sgl4.onrender.com/hourlytrip');
+                const response = await fetch('https://onlinetaxi-sgl4-je33.onrender.com/hourlytrip');
                 hourlyData = await response.json();
                 console.log('Hourly data fetched:', hourlyData);
             } catch (error) {
@@ -412,7 +412,7 @@
         document.getElementById('airport').addEventListener('submit', airport);
         async function fetchTour() {
             try {
-                const response = await fetch('https://onlinetaxi-sgl4.onrender.com/toproute');
+                const response = await fetch('https://onlinetaxi-sgl4-je33.onrender.com/toproute');
                 const json = await response.json();
                 console.log(json);
 
@@ -1475,7 +1475,7 @@
         // Fetch Tour Booking Data
         async function fetchTourData() {
             try {
-                const response = await fetch('https://onlinetaxi-sgl4.onrender.com/bestroute');
+                const response = await fetch('https://onlinetaxi-sgl4-je33.onrender.com/bestroute');
                 const json = await response.json();
 
                 json.forEach((item) => {

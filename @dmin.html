@@ -142,7 +142,7 @@
                             let percentageValue = Nbim.value;
                             console.log("Submitting percentage: " + percentageValue);
 
-                            fetch('https://onlinetaxi-sgl4.onrender.com/updatePrice', {
+                            fetch('https://onlinetaxi-sgl4-je33.onrender.com/updatePrice', {
                                 method: 'PUT',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -239,7 +239,7 @@
             }
 
             function fetchData(page) {
-                fetch('https://onlinetaxi-sgl4.onrender.com/findcar')
+                fetch('https://onlinetaxi-sgl4-je33.onrender.com/findcar')
                     .then(response => response.json())
                     .then(json => {
                         displayPage(json, page);
@@ -261,7 +261,7 @@
             function deleteone(id) {
                 const password = prompt("Please enter the password to delete:");
                 if (password === "32145") {
-                    fetch(`https://onlinetaxi-sgl4.onrender.com/delete/${id}`, {
+                    fetch(`https://onlinetaxi-sgl4-je33.onrender.com/delete/${id}`, {
                         method: 'DELETE',
                     })
                         .then(response => response.json())
@@ -325,7 +325,7 @@
                             let percentageValue = Nbim1.value;
                             console.log("Submitting percentage: " + percentageValue);
 
-                            fetch('https://onlinetaxi-sgl4.onrender.com/updatePriceRound', {
+                            fetch('https://onlinetaxi-sgl4-je33.onrender.com/updatePriceRound', {
                                 method: 'PUT',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -419,7 +419,7 @@
             }
 
             function fetchRoundData(page) {
-                fetch('https://onlinetaxi-sgl4.onrender.com/roundtrip')
+                fetch('https://onlinetaxi-sgl4-je33.onrender.com/roundtrip')
                     .then(response => response.json())
                     .then(json => {
                         displayRoundPage(json, page);
@@ -445,7 +445,7 @@
                 const password = prompt("Please enter the password to delete:");
 
                 if (password === "32145") {
-                    fetch(`https://onlinetaxi-sgl4.onrender.com/deleteround/${id}`, {
+                    fetch(`https://onlinetaxi-sgl4-je33.onrender.com/deleteround/${id}`, {
                         method: 'DELETE',
                     })
                         .then(response => response.json())
@@ -511,7 +511,7 @@
                         let percentageValue = Nbim2.value;
                         console.log("Submitting percentage: " + percentageValue);
 
-                        fetch('https://onlinetaxi-sgl4.onrender.com/updatePriceHourly', {
+                        fetch('https://onlinetaxi-sgl4-je33.onrender.com/updatePriceHourly', {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -562,7 +562,7 @@
         <div class="container my-5"></div>
 
         <script>
-            fetch('https://onlinetaxi-sgl4.onrender.com/hourlytrip')
+            fetch('https://onlinetaxi-sgl4-je33.onrender.com/hourlytrip')
                 .then(response => response.json())
                 .then(json => {
                     json.forEach(val => {
@@ -596,7 +596,7 @@
                 const password = prompt("Please enter the password to delete:");
 
                 if (password === "32145") {
-                    fetch(`https://onlinetaxi-sgl4.onrender.com/deletehourly/${id}`, {
+                    fetch(`https://onlinetaxi-sgl4-je33.onrender.com/deletehourly/${id}`, {
                         method: 'DELETE',
                     })
                         .then(response => response.json())
@@ -650,7 +650,7 @@
         <div class="container my-5"></div>
 
         <script>
-            fetch('https://onlinetaxi-sgl4.onrender.com/findBookdata')
+            fetch('https://onlinetaxi-sgl4-je33.onrender.com/findBookdata')
                 .then(response => response.json())
                 .then(json => {
                     // Reverse the fetched data
