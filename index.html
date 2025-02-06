@@ -217,7 +217,12 @@
 
             Table.style.display = found ? "block" : "none";
             if (found) window.location.href = "#onetwo";
-        } function Two() {
+        } 
+        
+        
+        
+        
+        function Two() {
             const Fromcity = document.getElementById('Fromcity1').value;
             const Tocity = document.getElementById('myULTo1');
             Tocity.innerHTML = '';
@@ -1296,11 +1301,11 @@
     </div>
     <!-- </div> -->
 
-    <div class="container mb-5 mt-3" data-aos="zoom-in" id="onetwo">
+    <div class="container mb-5 mt-5" data-aos="zoom-in" id="onetwo">
 
-        <div class="row">
+        <div class="row my-5">
             <div class=" w-100" id="TableData" style="display: none;">
-                <table class=" w-100   text-center ">
+                <table class=" w-100   text-center " >
                     <thead>
                         <tr>
                             <th>Car Model</th>
@@ -1310,7 +1315,7 @@
                             <th class="pe-1 pe-md-0">Book Car</th>
                         </tr>
                     </thead>
-                    <tbody id="tbody">
+                    <tbody id="tbody" >
 
                     </tbody>
                 </table>
