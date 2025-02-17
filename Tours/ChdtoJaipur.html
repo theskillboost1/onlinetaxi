@@ -114,6 +114,20 @@
                 display: none !important;
             }
         }
+
+
+
+        .accordion-button:not(.collapsed) {
+    background-color: #ffc107; /* Background when expanded */
+    color: white;
+}
+
+.accordion-button:focus, 
+.accordion-button:active {
+    box-shadow: none !important; /* Removes blue outline */
+    background-color: #ffc107 !important; /* Change this color */
+    color: white !important;
+}
     </style>
 </head>
 
@@ -256,30 +270,194 @@
         </nav>
     </div>
 
-    <div class="main container-fluid">
+    <div class="main container">
         <!-- <img src="../Images/Image2.png" class="Vector" alt="" height="400px"
             style="position: absolute; right: 0px; top: -20px; right: 100px;"> -->
-        <div class="row" style="min-height: 300px; border-bottom: 1px solid rgb(0, 0, 0);">
-
-            <div class="col-md-7 offset-md-1 d-flex align-items-center">
-                <div class="text my-5 pt-5">
-                    <h5 class="text-secondary">Explore the world!</h5>
-                    <h1 class="display-2 fw-bold my-2">Chandigarh to Jaipur <br>
-                        <span class="text-warning display-4 fw-bold">Just in <span id="A"></span>/-</span>
+        <div class="row">
+            <div class="col border-0 mt-5  ">
+                <div class="text  border-0">
+                    <h1 class="display-2 fw-bold ">Chandigarh to Jaipur
+                        <span style="text-shadow: 2px 2px 5px black;" class="text-warning  display-4 fw-bold">Just in
+                            <span id="A"></span>/-</span>
                     </h1>
-                    <p class="mb-4">
-                    </p>
-                    <!-- <button class="btn px-4 shadow" style="background-color: #5cd7b0;">Explore More</button> -->
-                    <p>Home - Tours</p>
                 </div>
             </div>
 
-            <div class="col-md hideimg">
-                <img src="../Images/Image2.png" alt="" height="400px">
+        </div>
+
+
+        <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!! start !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+
+        <div class="container mb-5 mt-5" data-aos="zoom-in" id="onetwo" style="scroll-margin-top: 200px;">
+
+            <div class="row my-5">
+                <div class=" w-100" id="TableData" style="display: none;">
+                    <table class=" w-100   text-center ">
+                        <thead>
+                            <tr>
+                                <th>Car Model</th>
+                                <th>Luggage</th>
+                                <th>Seats</th>
+                                <th>Price</th>
+                                <th class="pe-1 pe-md-0">Book Car</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
 
         </div>
+        <!-- <img src="../Images/" alt=""> -->
+        <script>
+
+let discountPrice
+            // .......
+            let rightprice
+            let oneWayData = []
+            async function fetchCarData() {
+                try {
+                    const response = await fetch("https://onlinetaxi-sgl4-je33.onrender.com/findcar");
+                    oneWayData = await response.json();
+                    console.log(oneWayData);
+                    another()
+
+                    OneWay()
+                } catch (error) {
+                    console.error("Error fetching car data:", error);
+                }
+            }
+            fetchCarData();
+
+
+
+            var image = ["./Images/Dzire - Online Taxi.png", "./Images/Ertiga - Online Taxi.png", "./Images/Kia Carness - Online Taxi.png",
+                "./Images/Innova - Online Taxi.png", "./Images/Hycross - Online Taxi.png", "./Images/17-Seater-Tempo-Traveller-.png",
+                "./Images/17-Seater-Tempo-Traveller-.png"]
+
+            function OneWay() {
+                // event.preventDefault();
+
+                // const Fromcity = document.FormOneway.Fromcity.value;
+                // let Tocity = document.FormOneway.Tocity.value;
+                // const RouteName = document.FormOneway.Name.value;
+                // console.log(Fromcity,Tocity,RouteName)
+
+                const Fromcity = "Chandigarh, India"
+                let Tocity = "Jaipur, Rajasthan, India"
+                RouteName = " Chandigarh to Jaipur"
+
+                const Tbody = document.getElementById('tbody');
+                const Table = document.getElementById('TableData');
+                Tbody.innerHTML = '';
+
+                const chandigarhVariants = [
+                    "Kharar, Chandigarh",
+                    "Panchkula, Chandigarh",
+                    "Mohali, Chandigarh",
+                    "Zirakpur, Chandigarh"
+                ];
+
+                if (chandigarhVariants.includes(Tocity)) {
+                    Tocity = "Chandigarh, India";
+                }
+
+                let found = false;
+                console.log(Tocity + "<br>" + Fromcity);
+                i = 0;
+                console.log("data", oneWayData)
+                oneWayData.forEach((data) => {
+
+                    if (Fromcity === data.From && Tocity === data.To) {
+                        if (data.Car == "Sedan/Maruti Dzire") {
+                            Tbody.innerHTML +=
+                                `<tr class="bg-white">
+                                    <td class="fw-bold text-start carsr ps-md-5"><img src='.${data.Imgg}' width="100px"><span class=" ps-4">${data.Car}</span> </td>
+                                    <td class="carsr1"><span class="fa fa-suitcase "></span> ${data.Luggage}</td>
+                                    <td class="carsr1"><span class="carsr1 fa fa-user pe-2"></span> ${data.Seats}</td>
+                                    <td class="fw-bold h5-md text-center"> ${discountPrice}/- <br><span class="text-secondary fw-lighter h6-md taxes" >inc. all taxes<span></td>
+                                    <td><button onclick="storeCarData('${data._id}', '${data.Car}', '${discountPrice}', '${Fromcity}', '${Tocity}', '${RouteName}', '${data.Seats}','${data.Luggage}')">Book Now</button></td>
+                                </tr>`;
+                        }
+                        else {
+
+                            found = true;
+                            Tbody.innerHTML +=
+                                `<tr class="bg-white">
+                                    <td class="fw-bold text-start carsr ps-md-5"><img src='.${data.Imgg}' width="100px"><span class=" ps-4">${data.Car}</span> </td>
+                                    <td class="carsr1"><span class="fa fa-suitcase "></span> ${data.Luggage}</td>
+                                    <td class="carsr1"><span class="carsr1 fa fa-user pe-2"></span> ${data.Seats}</td>
+                                    <td class="fw-bold h5-md text-center"> ${data.Price}/- <br><span class="text-secondary fw-lighter h6-md taxes" >inc. all taxes<span></td>
+                                    <td><button onclick="storeCarData('${data._id}', '${data.Car}', '${data.Price}', '${Fromcity}', '${Tocity}', '${RouteName}', '${data.Seats}','${data.Luggage}')">Book Now</button></td>
+                                </tr>`;
+                                                    }
+
+                        i++;
+                    }
+                });
+
+                if (!found) {
+                    alert("Not available on this route");
+                }
+
+                Table.style.display = found ? "block" : "none";
+                if (found) window.location.href = "#onetwo";
+            }
+
+           
+            function another() {
+
+
+
+                let Order = 0;
+
+                fetch('https://onlinetaxi-sgl4-je33.onrender.com/findBookdata')
+                    .then(response => response.json())
+                    .then(json => {
+
+                        json.forEach(val => {
+                            Order = val.No;
+                        });
+                        Order = Order + 1;
+
+                        console.log(json);
+
+
+                        document.getElementById('Noo').value = Order;
+                        document.getElementById('Realid').textContent = "STO" + Order;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+
+
+                const params = new URLSearchParams(window.location.search);
+                const route = params.get('route');
+
+                const fare = params.get('fare');
+                discountPrice = params.get('discountPrice');
+                const mainPrice = params.get('mainPrice');
+
+                console.log('Route: ' + route);
+                document.getElementById('fromCity1').value = route;
+                document.getElementById('ABCD').textContent = route;
+                document.getElementById('fromCity').textContent = route;
+                document.getElementById('Priceee').value = discountPrice;
+                document.getElementById('A').textContent = discountPrice;
+                document.getElementById('B').textContent = discountPrice;
+                document.getElementById('C').textContent = discountPrice;
+                document.getElementById('D').textContent = discountPrice;
+
+            };
+
+        </script>
+
+        <!-- end -->
 
 
         <!-- section -->
@@ -378,8 +556,8 @@
                 </div>
 
                 <div class="col-md order-md-last order-first">
-                    <form class="p-md-4 p-2" name="Bookingform" action="https://onlinetaxi-sgl4-je33.onrender.com/Bookform"
-                        method="post" id="carForm">
+                    <form class="p-md-4 p-2" name="Bookingform"
+                        action="https://onlinetaxi-sgl4-je33.onrender.com/Bookform" method="post" id="carForm">
 
                         <div>
 
@@ -571,6 +749,171 @@
                 </div>
             </div>
         </div>
+        
+<!-- faq start -->
+
+<div class="container my-5">
+    <h1 class="text-center mb-4  fw-bold">Frequently Asked Questions (FAQ)</h1>
+    
+    <div class="row">
+        <!-- Left Side Accordion -->
+        <div class="col-md-6">
+            <div class="faq-section">
+                <div class="accordion" id="faqLeft">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                1. How do I book a taxi from &nbsp; <span id="faqroute" class="fw-bold"> &nbsp; </span>?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqLeft">
+                            <div class="accordion-body">
+                                You can book a taxi online through our website or by calling our helpline number is : 
+                                <a class="text-warning fw-bold" href="tel:9988222283">9988-2222-83</a>.
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                2. What payment methods do you accept?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+                            <div class="accordion-body">
+                                We accept cash, credit/debit cards, UPI, and digital wallets.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                3. Are your drivers licensed?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+                            <div class="accordion-body">
+                                Yes, all our drivers are licensed and undergo thorough background checks.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                4. Can I schedule a ride in advance?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+                            <div class="accordion-body">
+                                Yes, you can schedule a ride up to 3 days in advance.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                5. Do you offer outstation trips?
+                            </button>
+                        </h2>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+                            <div class="accordion-body">
+                                Yes, we provide outstation taxi services with multiple vehicle options.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Accordion -->
+        <div class="col-md-6">
+            <div class="faq-section">
+                <div class="accordion" id="faqRight">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                6. How can I cancel my booking?
+                            </button>
+                        </h2>
+                        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                            <div class="accordion-body">
+                                You can cancel your ride through our app or by calling customer support.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                                7. Is there a cancellation fee?
+                            </button>
+                        </h2>
+                        <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                            <div class="accordion-body">
+                                Cancellation fees may apply depending on the time of cancellation.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                                8. Do you offer airport pickup and drop services?
+                            </button>
+                        </h2>
+                        <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                            <div class="accordion-body">
+                                Yes, we offer 24/7 airport pickup and drop-off services.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                                9. Can I choose my preferred driver?
+                            </button>
+                        </h2>
+                        <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                            <div class="accordion-body">
+                                While we cannot guarantee the same driver, you can mark a driver as preferred.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                                10. Do you provide child seats?
+                            </button>
+                        </h2>
+                        <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                            <div class="accordion-body">
+                                Yes, child seats are available on request while booking.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- faq end -->
+
+
+
+
+
+
+
 
         <!-- section -->
         <div class="container text-center py-5">
@@ -839,10 +1182,11 @@
                 document.getElementById('ABCD').textContent = route;
                 document.getElementById('fromCity').textContent = route;
                 document.getElementById('Priceee').value = discountPrice;
-                document.getElementById('A').textContent = discountPrice;
+                document.getElementById('A').textContent = rightprice;
                 document.getElementById('B').textContent = discountPrice;
                 document.getElementById('C').textContent = discountPrice;
                 document.getElementById('D').textContent = discountPrice;
+                document.getElementById("faqroute").innerHTML=route
 
             });
 
@@ -866,6 +1210,12 @@
                 window.location.href = '../index.html';
             }
 
+
+            function storeCarData(id, carName, price, fromCity, toCity, RouteName, Seats, Luggage) {
+                const carData = { carName, price, fromCity, toCity, RouteName, Seats, Luggage };
+                localStorage.setItem(id, JSON.stringify(carData));
+                window.location.href = `../booking.html?carId=${id}`;
+            }
         </script>
 </body>
 

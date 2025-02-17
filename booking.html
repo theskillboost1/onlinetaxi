@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="icon" type="image/x-icon" href="./Images/Online Taxi - Favicon.png">
     <link rel="stylesheet" href="./popup.css">
+    <link rel="stylesheet" href="./second.css">
     <!-- <link rel="stylesheet" href="./style.css"> -->
     <style>
         .formm,
@@ -85,12 +86,12 @@
         }
 
         .line {
-            padding-left: 167px;
+            padding-left: 160px;
             border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
         }
 
         .line1 {
-            padding-left: 130px;
+            padding-left: 180px;
             border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
         }
 
@@ -100,7 +101,7 @@
         }
 
         .line4 {
-            padding-left: 215px;
+            padding-left: 220px;
             border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
         }
 
@@ -115,7 +116,7 @@
             }
 
             .line1 {
-                padding-left: 10px;
+                padding-left: 60px;
                 border-bottom: 2px dashed rgba(128, 128, 128, 0.6);
             }
 
@@ -146,6 +147,20 @@
         .PP {
             width: 250px;
         }
+
+
+
+        .accordion-button:not(.collapsed) {
+    background-color: orange; /* Background when expanded */
+    color: white;
+}
+
+.accordion-button:focus, 
+.accordion-button:active {
+    box-shadow: none !important; /* Removes blue outline */
+    background-color: orange !important; /* Change this color */
+    color: white !important;
+}
     </style>
 </head>
 
@@ -268,7 +283,7 @@
                                 </p>
 
                                 <p>
-                                    <span class="going"> Going To/Hours : <span class="line1"></span></span>
+                                    <span class="going"> Going To : <span class="line1"></span></span>
                                     <span id="toCity1" class="ps-2"></span>
                                 </p>
                                 <p>
@@ -454,7 +469,7 @@
                                 <div class="col-md-12 ">
 
                                     <!-- <a href="#popup2"> -->
-                                    <input type="submit" value="Send Now" class="btn rounded-0 px-5 py-2"
+                                    <input type="submit" value="Send Now" class="btn rounded-0 shadow px-5 py-2 w-100"
                                         style="background-color: #ffc107;">
                                     <!-- </a> -->
                                 </div>

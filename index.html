@@ -60,7 +60,7 @@
 <body style="background-image: linear-gradient(to bottom, rgba(131, 244, 208, 0.724) 0%, #ffffff 100%);">
 
     <script>
-
+    
 
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -204,6 +204,8 @@
             i = 0;
             oneWayData.forEach((data) => {
                 if (Fromcity === data.From && Tocity === data.To) {
+
+                   
                     found = true;
                     Tbody.innerHTML +=
                         `<tr class="bg-white">
@@ -225,6 +227,9 @@
             Table.style.display = found ? "block" : "none";
             if (found) window.location.href = "#onetwo";
         } 
+
+
+       
         
         
         
@@ -433,7 +438,9 @@
                     Card.innerHTML += `
                    
     <div onclick="Abcd('${item.Route}','${item.Path}', '${item.DiscountPrice}', '${item.MainPrice}')" class="card border-0 m-2 rounded"
-    style="width:300px; background-color: hsla(161, 73%, 83%, 0.263);" > 
+    style="width:300px; background-color: hsla(161, 73%, 83%, 0.263);position: relative;" > 
+     <img src="./Images/sidhu_travels-removebg-preview.png" alt="" width="100px" height="30px" style="position: absolute; top:10px; left:20px;background-color:white;border-radius:15px;padding:4px">
+
     <img src="https://raw.githubusercontent.com/manpreet94560/project/refs/heads/main/Image/${item.Image}" alt="" height="150px" width="100%" class="shadow rounded cardm">
     <div class="card-body">
         <h5 class="fw-bold text-center">${item.Route}</h5>
@@ -1496,15 +1503,17 @@
                     const card = document.createElement('div');
                     card.classList.add('swiper-slide');
                     card.innerHTML = `
-                    <div class="card" onclick="redirectToDetails('${Path}','${Tourno}')"> 
-                        <img src="https://raw.githubusercontent.com/manpreet94560/project/refs/heads/main/Image/${item.Image1}" alt="${item.TourCity}">
+                    <div class="card" onclick="redirectToDetails('${Path}','${Tourno}')" style="position:relative;"> 
+                    <img src="./Images/sidhu_travels-removebg-preview.png" alt="Online Taxi"  style="width:150px;height:50px;position: absolute; top:20px;left:20px;background-color:white;padding:5px 5px 5px 5px; border-radius:25px">
+                        
+                        <img src="https://raw.githubusercontent.com/manpreet94560/project/refs/heads/main/Image/${item.Image1}" alt="${item.TourCity}"  style="width:100%;height:210px">
                         <div class="card-body py-4" style="position:relative;">
                         <div style="position:absolute; top:0px; left:50%;  transform: translate(-50%, -50%);">
                             <button class="btn btn-warning rounded-0 text-white" onclick="redirectToDetails('${Path}','${Tourno}')">Learn More</button></div>
 
                             <p class="text-secondary">${item.TourCity}</p>
                             <h5>${item.TourDescription}</h5>
-                            <p><span class="fa fa-star checked"></span><span class="text-secondary"> ${item.Review}</span></p>
+                            <p style="position:absolute;bottom:0px;left:50%;transform: translate(-50%, -50%);"><span class="fa fa-star checked"></span><span class="text-secondary"> ${item.Review}</span></p>
                         </div>
                     </div>`;
                     document.getElementById('carda').appendChild(card);
@@ -1525,7 +1534,7 @@
 
     <!-- Section -->
 
-    <div class="container-fluid" style="min-height:100vh;">
+    <div class="container-fluid" style="min-height:10vh;">
         <div class="container routes" data-aos="fade-up">
 
             <div>
@@ -1636,7 +1645,7 @@
                     </div>
                     <div class="col-sm-8 ">
                         <h3>Fast Booking</h3>
-                        <p>Booking a ride with us is quick and easy. Our user-friendly app and website allow you to
+                        <p>Booking a ride with us is quick and easy. Our user-friendly website allow you to
                             request a ride with just a few taps, so you can be on your way in no time.</p>
                     </div>
                 </div>
