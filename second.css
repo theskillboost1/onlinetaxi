@@ -1,0 +1,16 @@
+.accordion-button:not(.collapsed) {
+    background-color: #0056b3; /* Background when expanded */
+    color: white;
+}
+
+.accordion-button:focus, 
+.accordion-button:active {
+    box-shadow: none !important; /* Removes blue outline */
+    background-color: #ff6600 !important; /* Change this color */
+    color: white !important;
+}
+
+
+
+
+.callt{font-weight: bold;}

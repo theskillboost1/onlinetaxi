@@ -114,6 +114,23 @@
                 display: none !important;
             }
         }
+
+
+
+        .accordion-button:not(.collapsed) {
+            background-color: #ffc107;
+            /* Background when expanded */
+            color: white;
+        }
+
+        .accordion-button:focus,
+        .accordion-button:active {
+            box-shadow: none !important;
+            /* Removes blue outline */
+            background-color: #ffc107 !important;
+            /* Change this color */
+            color: white !important;
+        }
     </style>
 </head>
 
@@ -256,31 +273,200 @@
         </nav>
     </div>
 
-    <div class="main container-fluid">
+    <div class="main container">
         <!-- <img src="../Images/Image2.png" class="Vector" alt="" height="400px"
             style="position: absolute; right: 0px; top: -20px; right: 100px;"> -->
-        <div class="row" style="min-height: 300px; border-bottom: 1px solid rgb(0, 0, 0);">
-
-            <div class="col-md-7 offset-md-1 d-flex align-items-center">
-                <div class="text my-5 pt-5">
-                    <h5 class="text-secondary">Explore the world!</h5>
-                    <h1 class="display-2 fw-bold my-2">Chandigarh to Jaipur <br>
-                        <span class="text-warning display-4 fw-bold">Just in <span id="A"></span>/-</span>
+        <div class="row">
+            <div class="col border-0 mt-5  ">
+                <div class="text  border-0">
+                    <h1 class="display-2 fw-bold ">Chandigarh to Jaipur
+                        <span style="text-shadow: 2px 2px 5px black;" class="text-warning  display-4 fw-bold">Just in
+                            <span id="A"></span>/-</span>
                     </h1>
-                    <p class="mb-4">
-                    </p>
-                    <!-- <button class="btn px-4 shadow" style="background-color: #5cd7b0;">Explore More</button> -->
-                    <p>Home - Tours</p>
                 </div>
-            </div>
-
-            <div class="col-md hideimg">
-                <img src="../Images/Image2.png" alt="" height="400px">
-
             </div>
 
         </div>
 
+
+        <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!! start !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+
+        <div class="container mb-5 mt-5" data-aos="zoom-in" id="onetwo" style="scroll-margin-top: 200px;">
+
+            <div class="row my-5">
+                <div class=" w-100" id="TableData" style="display: none;">
+                    <table class=" w-100   text-center ">
+                        <thead>
+                            <tr>
+                                <th>Car Model</th>
+                                <th>Luggage</th>
+                                <th>Seats</th>
+                                <th>Price</th>
+                                <th class="pe-1 pe-md-0">Book Car</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- <img src="../Images/" alt=""> -->
+        <script>
+
+            let discountPrice
+            // .......
+            let rightprice
+            let oneWayData = []
+            async function fetchCarData() {
+                try {
+                    const response = await fetch("https://onlinetaxi-sgl4-je33.onrender.com/findcar");
+                    oneWayData = await response.json();
+                    console.log(oneWayData);
+                    another()
+
+                    OneWay()
+                } catch (error) {
+                    console.error("Error fetching car data:", error);
+                }
+            }
+            fetchCarData();
+
+
+
+            var image = ["./Images/Dzire - Online Taxi.png", "./Images/Ertiga - Online Taxi.png", "./Images/Kia Carness - Online Taxi.png",
+                "./Images/Innova - Online Taxi.png", "./Images/Hycross - Online Taxi.png", "./Images/17-Seater-Tempo-Traveller-.png",
+                "./Images/17-Seater-Tempo-Traveller-.png"]
+
+            function OneWay() {
+                // event.preventDefault();
+
+                // const Fromcity = document.FormOneway.Fromcity.value;
+                // let Tocity = document.FormOneway.Tocity.value;
+                // const RouteName = document.FormOneway.Name.value;
+                // console.log(Fromcity,Tocity,RouteName)
+
+                const Fromcity = "Chandigarh, India"
+                let Tocity = "Jaipur, Rajasthan, India"
+                RouteName = " Chandigarh to Jaipur"
+
+                const Tbody = document.getElementById('tbody');
+                const Table = document.getElementById('TableData');
+                Tbody.innerHTML = '';
+
+                const chandigarhVariants = [
+                    "Kharar, Chandigarh",
+                    "Panchkula, Chandigarh",
+                    "Mohali, Chandigarh",
+                    "Zirakpur, Chandigarh"
+                ];
+
+                if (chandigarhVariants.includes(Tocity)) {
+                    Tocity = "Chandigarh, India";
+                }
+
+                let found = false;
+                console.log(Tocity + "<br>" + Fromcity);
+                i = 0;
+                console.log("data", oneWayData)
+                oneWayData.forEach((data) => {
+
+                    if (Fromcity === data.From && Tocity === data.To) {
+                        if (data.Car == "Sedan/Maruti Dzire") {
+                            Tbody.innerHTML +=
+                                `<tr class="bg-white">
+                                    <td class="fw-bold text-start carsr ps-md-5"><img src='.${data.Imgg}' width="100px"><span class=" ps-4">${data.Car}</span> </td>
+                                    <td class="carsr1"><span class="fa fa-suitcase "></span> ${data.Luggage}</td>
+                                    <td class="carsr1"><span class="carsr1 fa fa-user pe-2"></span> ${data.Seats}</td>
+                                    <td class="fw-bold h5-md text-center"> ${discountPrice}/- <br><span class="text-secondary fw-lighter h6-md taxes" >inc. all taxes<span></td>
+                                    <td><button onclick="storeCarData('${data._id}', '${data.Car}', '${discountPrice}', '${Fromcity}', '${Tocity}', '${RouteName}', '${data.Seats}','${data.Luggage}')">Book Now</button></td>
+                                </tr>`;
+                        }
+                        else {
+
+                            found = true;
+                            Tbody.innerHTML +=
+                                `<tr class="bg-white">
+                                    <td class="fw-bold text-start carsr ps-md-5"><img src='.${data.Imgg}' width="100px"><span class=" ps-4">${data.Car}</span> </td>
+                                    <td class="carsr1"><span class="fa fa-suitcase "></span> ${data.Luggage}</td>
+                                    <td class="carsr1"><span class="carsr1 fa fa-user pe-2"></span> ${data.Seats}</td>
+                                    <td class="fw-bold h5-md text-center"> ${data.Price}/- <br><span class="text-secondary fw-lighter h6-md taxes" >inc. all taxes<span></td>
+                                    <td><button onclick="storeCarData('${data._id}', '${data.Car}', '${data.Price}', '${Fromcity}', '${Tocity}', '${RouteName}', '${data.Seats}','${data.Luggage}')">Book Now</button></td>
+                                </tr>`;
+                        }
+
+                        i++;
+                    }
+                });
+
+                if (!found) {
+                    alert("Not available on this route");
+                }
+
+                Table.style.display = found ? "block" : "none";
+                if (found) window.location.href = "#onetwo";
+            }
+
+
+            function another() {
+
+
+
+                let Order = 0;
+
+                fetch('https://onlinetaxi-sgl4-je33.onrender.com/findBookdata')
+                    .then(response => response.json())
+                    .then(json => {
+
+                        json.forEach(val => {
+                            Order = val.No;
+                        });
+                        Order = Order + 1;
+
+                        console.log(json);
+
+
+                        document.getElementById('Noo').value = Order;
+                        document.getElementById('Realid').textContent = "STO" + Order;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+
+
+                const params = new URLSearchParams(window.location.search);
+                const route = params.get('route');
+
+                const fare = params.get('fare');
+                discountPrice = params.get('discountPrice');
+                const mainPrice = params.get('mainPrice');
+
+                console.log('Route: ' + route);
+                document.getElementById('fromCity1').value = route;
+                document.getElementById('ABCD').textContent = route;
+                document.getElementById('fromCity').textContent = route;
+                document.getElementById('Priceee').value = discountPrice;
+                document.getElementById('A').textContent = discountPrice;
+                document.getElementById('B').textContent = discountPrice;
+                document.getElementById('C').textContent = discountPrice;
+                document.getElementById('D').textContent = discountPrice;
+
+            };
+
+        </script>
+
+        <!-- end -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start subheading>>>>>>>>>>>>>>>>>>>> -->
+<div class="mt-5 mb-5 text-center">
+    <h1 class="fw-bold">Enjoy a Smooth and Easy Journey from Chandigarh to Jaipur</h1>
+    <p class=" fs-4" style="color: #5cd7b0;"><i>where Quality Meets Convenience With Online Taxi</i></p>
+</div>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>End subheading>>>>>>>>>>>>>>>>>>>> -->
 
         <!-- section -->
 
@@ -296,45 +482,89 @@
                                 service</strong> ensures a smooth, hassle-free, and enjoyable journey from start to
                             finish.</p>
 
-                        <h2 class="fw-bold">Tour Overview:</h2>
-                        <p>Our Chandigarh to Jaipur taxi service provides you with a seamless journey through North
-                            India. From the moment you book your taxi, we ensure that you have a comfortable ride,
-                            whether you're traveling for tourism, business, or special events. The road to Jaipur offers
-                            scenic views, and our well-maintained vehicles and experienced drivers guarantee a safe and
-                            relaxing experience.
+                        <h2 class="fw-bold">Chandigarh to Jaipur Taxi Service Overview:</h2>
+                        <p>Online Taxi offers the best Chandigarh to Jaipur Taxi Service, providing a reliable and
+                            comfortable way to travel between these two vibrant cities. Whether you are planning a
+                            one-way trip or a round trip, Online Taxi offers flexible booking options to suit your
+                            travel needs. Enjoy a smooth and comfortable ride in well-maintained, air-conditioned
+                            vehicles as you journey from Chandigarh to Jaipur. With a focus on punctuality, safety, and
+                            customer satisfaction, you can expect a hassle-free experience. Our professional drivers
+                            ensure timely arrivals and are happy to offer insights about the famous attractions in
+                            Jaipur. For the best Chandigarh to Jaipur Taxi Service, known for its transparent pricing
+                            and exceptional service, book your ride today at www.onlinetaxi.co.in and enjoy a seamless
+                            journey.
+                        </p>
 
-                            During your stay in Jaipur, you can visit the magnificent Amber Fort, Hawa Mahal, City
-                            Palace, and much more. We ensure you have enough time to enjoy these iconic attractions,
-                            while our reliable service and knowledgeable drivers take care of the rest.</p>
+                        <h2 class="fw-bold">About Your Chandigarh to Jaipur Ride:</h2>
+                        <p>Make your journey enjoyable and relaxing with the best Chandigarh to Jaipur Taxi Service.
+                            From the moment you book your ride, you can expect a comfortable and efficient experience in
+                            a well-maintained, air-conditioned vehicle. Whether it's a one-way trip or a round trip, our
+                            Chandigarh to Jaipur Taxi Service guarantees punctuality, safety, and a comfortable
+                            atmosphere. With a professional driver behind the wheel, your travel experience will be
+                            stress-free, allowing you to sit back, relax, and enjoy the ride. The best Chandigarh to
+                            Jaipur Taxi Service combines affordability with luxury, ensuring your journey is both
+                            convenient and pleasant.
+                        </p>
 
+                        <h2 class="fw-bold">Enjoy Your Chandigarh to Jaipur Journey:</h2>
+                        <p>The journey from Chandigarh to Jaipur offers a unique blend of scenic and cultural
+                            experiences. As you travel, you'll pass through vast open roads, charming towns, and
+                            beautiful landscapes, all while enjoying a smooth and comfortable ride. The well-maintained
+                            roads and air-conditioned vehicles ensure you travel in comfort as you make your way to
+                            Jaipur, the Pink City. Whether you're heading to Jaipur for a cultural trip, business, or
+                            leisure, the best Chandigarh to Jaipur Taxi Service makes your travel experience both
+                            relaxing and enjoyable.
+                        </p>
+
+                        <h2 class="fw-bold">At Your Destination - Chandigarh to Jaipur:</h2>
+                        <p>As you arrive in Jaipur, you'll be greeted by the regal atmosphere of this historical city.
+                            Known for its rich heritage, stunning architecture, and vibrant markets, Jaipur is a city
+                            that exudes charm and grandeur. From iconic landmarks such as the Amer Fort, City Palace,
+                            and Hawa Mahal to the bustling markets of Johari Bazaar, Jaipur offers a treasure trove of
+                            cultural experiences. With the Chandigarh to Jaipur Taxi Service, your arrival will be
+                            comfortable and stress-free, giving you the perfect start to explore all that this beautiful
+                            city has to offer. The best Chandigarh to Jaipur Taxi Service ensures that your journey is
+                            just as remarkable as your time in the Pink City.
+                        </p>
                         <h2 class="fw-bold">Why Choose Our Chandigarh to Jaipur Taxi Service:</h2>
 
-                        <p><b>1. Comfort and Convenience:</b> Our Chandigarh to Jaipur taxi service offers comfortable,
+                        <p><b>1. Comfort and Convenience:</b> Our Chandigarh to Jaipur Taxi Service offers comfortable,
                             air-conditioned vehicles designed to make your journey relaxing. Spacious interiors and
                             well-maintained cars ensure a comfortable experience, making long-distance travel enjoyable.
+                            When you choose the best Chandigarh to Jaipur Taxi Service, you get more than just a ride –
+                            you get a luxurious travel experience.
+
                             <br><br>
 
-                            <b>2. Experienced and Professional Drivers:</b> Our drivers are skilled and experienced,
-                            familiar with the routes between Chandigarh and Jaipur. They are courteous, professional,
-                            and prioritize your safety and comfort throughout the journey. <br><br>
+                            <b>2. Experienced and Professional Drivers:</b> With the best Chandigarh to Jaipur Taxi
+                            Service, our drivers are skilled, experienced, and familiar with the routes between
+                            Chandigarh and Jaipur. They are courteous, professional, and prioritize your safety and
+                            comfort throughout the journey. You can trust our drivers to provide you with a smooth and
+                            pleasant travel experience, ensuring your trip is both comfortable and safe. <br><br>
 
-                            <b>3. Affordable Pricing – </b>Chandigarh to Jaipur Just in ₹<span id="B"></span>/-: Enjoy a
+                            <b>3. Affordable Pricing : </b>Chandigarh to Jaipur Just in ₹<span id="B"></span>/-: Enjoy a
                             comfortable and high-quality ride for an unbeatable price. Our <strong>Chandigarh to Jaipur
                                 taxi service</strong> starts at just ₹<span id="C"></span>/-! No hidden charges, just
                             exceptional service at a reasonable price. <br><br>
 
-                            <b>4. Timely and Reliable Service:</b> Punctuality is one of our priorities. Our drivers
-                            ensure that you reach Jaipur on time, whether it's for sightseeing, business meetings, or
-                            any other planned events. You can rely on our Chandigarh taxi service to be on time and
-                            reliable. <br><br>
+                            <b>4. Timely and Reliable Service:</b> Punctuality is one of our key priorities in the
+                            Chandigarh to Jaipur Taxi Service. Our drivers ensure that you reach Jaipur on time, whether
+                            it's for sightseeing, business meetings, or other scheduled events. You can rely on our best
+                            Chandigarh to Jaipur Taxi Service to be prompt and dependable, ensuring a stress-free
+                            journey. <br><br>
 
-                            <b>5. Customized Itineraries:</b> Whether you wish to explore Jaipur’s palaces, shop for
-                            traditional handicrafts, or relax at local resorts, we offer flexibility to customize your
-                            travel itinerary. Your trip will be tailored to your preferences. <br><br>
+                            <b>5. Customized Itineraries:</b> The Chandigarh to Jaipur Taxi Service offers flexibility
+                            to customize your travel itinerary. Whether you wish to explore Jaipur's palaces, shop for
+                            traditional handicrafts, or relax at local resorts, we cater to your preferences. The best
+                            Chandigarh to Jaipur Taxi Service ensures your trip is tailored to suit your personal travel
+                            needs, giving you the best experience possible.<br><br>
 
-                            <b>6. 24/7 Customer Support:</b> Our customer support team is available round the clock to
-                            assist with booking, inquiries, or any concerns you may have. No matter when you need
-                            assistance, we're here to help.
+                            <b>6. 24/7 Customer Support:</b> Our Chandigarh to Jaipur Taxi Service comes with
+                            round-the-clock customer support to assist with bookings, inquiries, or any concerns you may
+                            have. No matter when you need help, our team is available to provide assistance, ensuring
+                            that your experience with the best Chandigarh to Jaipur Taxi Service is smooth from start to
+                            finish.
+
                         </p>
 
                         <h2 class="fw-bold">Discover Jaipur: The Pink City of Rajasthan</h2>
@@ -378,8 +608,8 @@
                 </div>
 
                 <div class="col-md order-md-last order-first">
-                    <form class="p-md-4 p-2" name="Bookingform" action="https://onlinetaxi-sgl4-je33.onrender.com/Bookform"
-                        method="post" id="carForm">
+                    <form class="p-md-4 p-2" name="Bookingform"
+                        action="https://onlinetaxi-sgl4-je33.onrender.com/Bookform" method="post" id="carForm">
 
                         <div>
 
@@ -571,6 +801,188 @@
                 </div>
             </div>
         </div>
+
+        <hr class="mt-5">
+        <h5 class="text-center fw-bold" style="color: #5cd7b0;">Chandigarh to Jaipur Taxi Service: Oneway Drops &
+            Roundtrip Taxi for a Comfortable Journey</h5>
+        <hr class="mb-5">
+
+        <!-- faq start -->
+
+        <div class="container my-5">
+            <h1 class="text-center mb-4  fw-bold">Frequently Asked Questions (FAQ)</h1>
+
+            <div class="row">
+                <!-- Left Side Accordion -->
+                <div class="col-md-6">
+                    <div class="faq-section">
+                        <div class="accordion" id="faqLeft">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq1">
+                                        1. How do I book a taxi from &nbsp; <span id="faqroute" class="fw-bold"> &nbsp;
+                                        </span>?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqLeft">
+                                    <div class="accordion-body">
+                                        You can book a taxi online through our website or by calling our helpline number
+                                        is :
+                                        <a class="text-warning fw-bold" href="tel:9988222283">9988-2222-83</a>.
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq2">
+                                        2. What payment methods do you accept?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+                                    <div class="accordion-body">
+                                        We accept cash, credit/debit cards, UPI, and digital wallets.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq3">
+                                        3. Are your drivers licensed?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+                                    <div class="accordion-body">
+                                        Yes, all our drivers are licensed and undergo thorough background checks.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq4">
+                                        4. Can I schedule a ride in advance?
+                                    </button>
+                                </h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+                                    <div class="accordion-body">
+                                        Yes, you can schedule a ride up to 3 days in advance.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq5">
+                                        5. Do you offer outstation trips?
+                                    </button>
+                                </h2>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+                                    <div class="accordion-body">
+                                        Yes, we provide outstation taxi services with multiple vehicle options.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Accordion -->
+                <div class="col-md-6">
+                    <div class="faq-section">
+                        <div class="accordion" id="faqRight">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq6">
+                                        6. How can I cancel my booking?
+                                    </button>
+                                </h2>
+                                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                                    <div class="accordion-body">
+                                        You can cancel your ride through our app or by calling customer support.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq7">
+                                        7. Is there a cancellation fee?
+                                    </button>
+                                </h2>
+                                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                                    <div class="accordion-body">
+                                        Cancellation fees may apply depending on the time of cancellation.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq8">
+                                        8. Do you offer airport pickup and drop services?
+                                    </button>
+                                </h2>
+                                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                                    <div class="accordion-body">
+                                        Yes, we offer 24/7 airport pickup and drop-off services.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq9">
+                                        9. Can I choose my preferred driver?
+                                    </button>
+                                </h2>
+                                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                                    <div class="accordion-body">
+                                        While we cannot guarantee the same driver, you can mark a driver as preferred.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq10">
+                                        10. Do you provide child seats?
+                                    </button>
+                                </h2>
+                                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+                                    <div class="accordion-body">
+                                        Yes, child seats are available on request while booking.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- faq end -->
+
+
+
+
+
+
+
 
         <!-- section -->
         <div class="container text-center py-5">
@@ -839,10 +1251,11 @@
                 document.getElementById('ABCD').textContent = route;
                 document.getElementById('fromCity').textContent = route;
                 document.getElementById('Priceee').value = discountPrice;
-                document.getElementById('A').textContent = discountPrice;
+                document.getElementById('A').textContent = rightprice;
                 document.getElementById('B').textContent = discountPrice;
                 document.getElementById('C').textContent = discountPrice;
                 document.getElementById('D').textContent = discountPrice;
+                document.getElementById("faqroute").innerHTML = route
 
             });
 
@@ -866,6 +1279,12 @@
                 window.location.href = '../index.html';
             }
 
+
+            function storeCarData(id, carName, price, fromCity, toCity, RouteName, Seats, Luggage) {
+                const carData = { carName, price, fromCity, toCity, RouteName, Seats, Luggage };
+                localStorage.setItem(id, JSON.stringify(carData));
+                window.location.href = `../booking.html?carId=${id}`;
+            }
         </script>
 </body>
 

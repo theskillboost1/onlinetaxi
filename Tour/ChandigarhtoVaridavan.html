@@ -418,7 +418,7 @@
                 </ul>
                 <hr>
 
-                <p><strong>Tour Inclusions:</strong><br>
+                <!-- <p><strong>Tour Inclusions:</strong><br>
                     Accommodation: 2 nights in 3-star hotels (on twin-sharing basis). <br>
                     Meals: Breakfast & Dinner included. <br>
                     Transport: Comfortable vehicle for the entire trip. <br>
@@ -426,7 +426,7 @@
                     Driver & Guide: Knowledgeable driver/guide for your journey. <br>
                     Price: ₹14,999/- per person (on twin-sharing basis)
                 </p>
-                <hr>
+                <hr> -->
 
                 <p><strong>Travel Tips:</strong><br>
                     Clothing: Light and comfortable clothing for daytime. If traveling in winter, pack warm clothes.
@@ -648,17 +648,19 @@
                     const card = document.createElement('div');
                     card.classList.add('swiper-slide');
                     card.innerHTML = `
-                    <div class="card" onclick="redirectToDetails('${Path}','${Tourno}')"> 
-                        <img src="https://raw.githubusercontent.com/manpreet94560/project/refs/heads/main/Image/${item.Image1}" alt="${item.TourCity}">
+                    <div class="card" onclick="redirectToDetails('${Path}','${Tourno}')" style="position:relative;"> 
+                    <img src="../Images/sidhu_travels-removebg-preview.png" alt=""  style="width:150px;height:50px;position: absolute; top:20px;left:20px;background-color:white;padding:5px 5px 5px 5px; border-radius:25px">
+                        
+                        <img src="https://raw.githubusercontent.com/manpreet94560/project/refs/heads/main/Image/${item.Image1}" alt="${item.TourCity}"  style="width:100%;height:210px">
                         <div class="card-body py-4" style="position:relative;">
                         <div style="position:absolute; top:0px; left:50%;  transform: translate(-50%, -50%);">
                             <button class="btn btn-warning rounded-0 text-white" onclick="redirectToDetails('${Path}','${Tourno}')">Learn More</button></div>
 
                             <p class="text-secondary">${item.TourCity}</p>
                             <h5>${item.TourDescription}</h5>
-                            <p><span class="fa fa-star checked"></span><span class="text-secondary"> ${item.Review}</span></p>
+                            <p style="position:absolute;bottom:0px;left:50%;transform: translate(-50%, -50%);"><span class="fa fa-star checked"></span><span class="text-secondary"> ${item.Review}</span></p>
                         </div>
-                    </div>`;
+                    </div>`
                     document.getElementById('carda').appendChild(card);
                 });
 
