@@ -31,17 +31,18 @@
 
     <!-- Schema markup -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "WebSite",
-      "name": "Online Taxi",
-      "url": "https://onlinetaxi.co.in/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "{search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
+        {
+            "@context": "https://schema.org/",
+            "@type": "WebSite",
+            "name": "Online Taxi",
+            "url": "https://onlinetaxi.co.in/",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://onlinetaxi.co.in/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+          
     </script>
 
 
