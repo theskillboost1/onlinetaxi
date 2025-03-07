@@ -23,7 +23,8 @@ const RouteShow = [
     {
         From: "Jammu",
         To: "Chandigarh, India",
-        Routename:"Jammu to Chandigarh"
+        Routename:"Jammu to Chandigarh",
+        page:"Jammu-to-Chd.html"
     } ,
     {
         From: "Chandigarh, India",
@@ -47,27 +48,32 @@ const RouteShow = [
     {
         From: "Chandigarh, India",
         To: "Tirthan Valley, Gushaini, Himachal Pradesh, India",
-        Routename:"Chandigarh to Tirthan Valley"
+        Routename:"Chandigarh to Tirthan Valley",
+        page:"Chd-to-Tirthanvalley.html"
     }, 
     {
         From: "Chandigarh, India",
         To: "Gurugram, Haryana, India",
-        Routename:"Chandigarh to Gurugram"
+        Routename:"Chandigarh to Gurugram",
+       page:"Chd-to-Gurugram.html"
     }, 
     {
         From: "Chandigarh, India",
         To: "Dharamshala, Himachal Pradesh, India",
-        Routename:"Chandigar to Dharamshala"
+        Routename:"Chandigarh to Dharamshala",
+        page:"Chd-to-Dharamshala.html"
     }, 
     {
         From: "Chandigarh, India",
         To: "Haridwar, Uttarakhand, India",
-        Routename:"Chandigarh to Haridwar"
+        Routename:"Chandigarh to Haridwar",
+        page:"Chd-to-Haridwar.html"
     }, 
     {
         From: "Chandigarh, India",
         To: "Dehradun, Uttarakhand, India",
-        Routename:"Chandigarh to Dehradun"
+        Routename:"Chandigarh to Dehradun",
+        page:"Chd-to-Dehradun.html"
     },
     {
         From:"Chandigarh, India",
